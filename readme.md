@@ -1,6 +1,6 @@
 This project covers the syllabus of `Associate Android Developer Certification`
 
-[Exam Content](https://developers.google.com/training/certification/associate-android-developer/#exam-content) is here
+[Exam Content](https://developers.google.com/training/certification/associate-android-developer/#exam-content) is here and [x] `topics are covered here`.
 
 
 ### User interface (UI) and app functionality
