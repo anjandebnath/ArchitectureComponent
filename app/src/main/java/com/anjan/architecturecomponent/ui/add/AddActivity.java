@@ -19,6 +19,7 @@ public class AddActivity extends AppCompatActivity {
     Button buttonSave;
 
     AddMoviesViewModel addMoviesViewModel;
+    int directorId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +39,18 @@ public class AddActivity extends AppCompatActivity {
                 String movie = editTextMovie.getEditableText().toString();
                 String director = editTextDirector.getEditableText().toString();
                 DirectorEntity directorEntity = new DirectorEntity(director);
-                int id = (int) addMoviesViewModel.insertDirector(directorEntity);
 
-                MovieEntity movieEntity = new MovieEntity(movie, id);
+                //check duplicate id can not be inserted
+                directorId = addMoviesViewModel.findDirector(director);
+                if( directorId < 0){
+                    directorId = (int) addMoviesViewModel.insertDirector(directorEntity);
+                }
+                MovieEntity movieEntity = new MovieEntity(movie, directorId);
                 addMoviesViewModel.insertMovie(movieEntity);
+
+
+                editTextMovie.setText("");
+                editTextDirector.setText("");
             }
         });
 

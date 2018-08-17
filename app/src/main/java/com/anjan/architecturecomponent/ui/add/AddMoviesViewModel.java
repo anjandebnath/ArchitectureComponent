@@ -34,4 +34,16 @@ public class AddMoviesViewModel extends AndroidViewModel {
     public long insertDirector(DirectorEntity director){
         return directorDao.insert(director);
     }
+
+    public int findDirector(String name){
+        DirectorEntity directorEntity =  null;
+        directorEntity =  directorDao.findDirectorByName(name);
+        if(directorEntity!= null){
+            return directorEntity.getId();
+        }else{
+            return -1;
+        }
+    }
+
+
 }
