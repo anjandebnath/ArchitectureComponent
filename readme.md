@@ -7,11 +7,11 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - [x] Create an Activity that displays a layout
 - [x] Construct a UI with ConstraintLayout
 - [x] Create a custom view class and add it to a layout
-- Add accessibility hooks to a custom view
 - [x] Apply content descriptions to views for accessibility
 - [x] Implement a custom app theme
 - [x] Display items in a RecyclerView
 - [x] Bind local data to a RecyclerView list using the paging library
+- Add accessibility hooks to a custom view
 - Implement menu-based or drawer navigation
 - Localize the app
 - Display notifications, toasts, and snackbar messages
