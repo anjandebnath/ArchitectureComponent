@@ -1,6 +1,7 @@
 package com.anjan.architecturecomponent.dao;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.DataSource;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -39,4 +40,5 @@ public interface DirectorDao {
 
     @Query("SELECT * FROM director ORDER BY full_name ASC")
     LiveData<List<DirectorEntity>> getAllDirectors();
+
 }

@@ -3,6 +3,8 @@ package com.anjan.architecturecomponent.ui.main;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.LivePagedListBuilder;
+import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
 
@@ -19,16 +21,22 @@ import java.util.List;
 
 public class MoviesViewModel extends AndroidViewModel {
 
+    private static final int INITIAL_LOAD_KEY = 0;
+    private static final int PAGE_SIZE = 20;
+    private static final int PREFETCH_DISTANCE = 5;
+
     private MovieDao movieDao;
-    private LiveData<List<MovieEntity>> moviesLiveData;
+    //private LiveData<List<MovieEntity>> moviesLiveData;
+
+    private LiveData<PagedList<MovieEntity>> moviesLiveData;
 
     public MoviesViewModel(@NonNull Application application) {
         super(application);
         movieDao = MoviesDatabase.getDatabase(application).movieDao();
-        moviesLiveData = movieDao.getAllMovies();
+        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), 20).build();
     }
 
-    public LiveData<List<MovieEntity>> getMoviesList() {
+    public LiveData<PagedList<MovieEntity>> getMoviesList() {
         return moviesLiveData;
     }
 

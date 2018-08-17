@@ -1,38 +1,51 @@
 package com.anjan.architecturecomponent.ui.main;
 
+import android.arch.paging.PagedList;
+import android.arch.paging.PagedListAdapter;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.R;
-import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-
-import java.util.List;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
  */
 
-public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.MoviesViewHolder> {
+public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
-    private List<MovieEntity> movieList;
+    private PagedList<MovieEntity> movieList;
     private Context context;
 
     public MoviesListAdapter(Context context) {
+        super(DIFF_CALLBACK);
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
-    public void setMovieList(List<MovieEntity> movieList) {
-        this.movieList = movieList;
-        notifyDataSetChanged();
-    }
+    public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<MovieEntity>() {
+                @Override
+                public boolean areItemsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // User properties may have changed if reloaded from the DB, but ID is fixed
+                    return oldItem.getId() == newItem.getId();
+                }
+                @Override
+                public boolean areContentsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // NOTE: if you use equals, your object must properly override Object#equals()
+                    // Incorrectly returning false here will result in too many animations.
+                    return oldItem.equals(newItem);
+                }
+            };
+
+
 
     @Override
     public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -46,45 +59,13 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Mo
             return;
         }
 
-        final MovieEntity movie = movieList.get(position);
+        final MovieEntity movie = getItem(position);
         if (movie != null) {
-            holder.titleText.setText(movie.movieName);
-
-            final DirectorEntity director = MoviesDatabase.getDatabase(context).directorDao().findDirectorById(movie.directorId);
-            final String directorFullName;
-            if (director != null) {
-                holder.directorText.setText(director.fullName);
-                directorFullName = director.fullName;
-            } else {
-                directorFullName = "";
-            }
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        if (movieList == null) {
-            return 0;
+            holder.bindTo(movie);
         } else {
-            return movieList.size();
+            holder.clear();
         }
     }
 
-    static class MoviesViewHolder extends RecyclerView.ViewHolder {
-        private TextView titleText;
-        private TextView directorText;
 
-        public MoviesViewHolder(View itemView) {
-            super(itemView);
-
-            titleText = itemView.findViewById(R.id.tvMovieTitle);
-            directorText = itemView.findViewById(R.id.tvMovieDirectorFullName);
-        }
-    }
 }

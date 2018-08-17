@@ -2,6 +2,7 @@ package com.anjan.architecturecomponent.ui.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +12,9 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.anjan.architecturecomponent.ui.add.AddActivity;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-
-import java.util.List;
+import com.anjan.architecturecomponent.ui.add.AddActivity;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -46,13 +45,14 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(moviesListAdapter);
 
-
-        moviesViewModel.getMoviesList().observe(this, new Observer<List<MovieEntity>>() {
+        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
             @Override
-            public void onChanged(@Nullable List<MovieEntity> movies) {
-                moviesListAdapter.setMovieList(movies);
+            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
+                moviesListAdapter.submitList(movieEntities);
             }
         });
+
+
 
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, AddActivity.class);

@@ -1,12 +1,14 @@
 package com.anjan.architecturecomponent.dao;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.DataSource;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
 import java.util.List;
@@ -31,6 +33,9 @@ public interface MovieDao {
     @Query("DELETE FROM movie")
     void deleteAll();
 
+   /* @Query("SELECT * FROM movie ORDER BY movieName ASC")
+    LiveData<List<MovieEntity>> getAllMovies();*/
+
     @Query("SELECT * FROM movie ORDER BY movieName ASC")
-    LiveData<List<MovieEntity>> getAllMovies();
+    public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();
 }
