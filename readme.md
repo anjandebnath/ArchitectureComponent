@@ -34,3 +34,8 @@ This project covers the syllabus of `Associate Android Developer Certification`
 That means your **background job** code needs to be added to **callback methods of JobService**.
 
 ### How it works
+![](https://github.com/anjandebnath/ArchitectureComponent/blob/job_schedular/img/job1.jpg)
+
+
+
+![](https://github.com/anjandebnath/ArchitectureComponent/blob/job_schedular/img/job2.png)
