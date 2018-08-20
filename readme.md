@@ -27,3 +27,10 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - Read and parse raw resources or asset files
 - Create persistent preference data from user input
 - Change the behavior of the app based on user preferences
+
+
+### JobService
+**JobService** is an android service component with callback methods which the **JobSchedule** calls when a job needs to be run.
+That means your **background job** code needs to be added to **callback methods of JobService**.
+
+### How it works
