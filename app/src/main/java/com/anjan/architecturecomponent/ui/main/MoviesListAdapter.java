@@ -50,14 +50,11 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
     @Override
     public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View itemView = layoutInflater.inflate(R.layout.item_list_movie, parent, false);
-        return new MoviesViewHolder(itemView);
+        return new MoviesViewHolder(itemView, context);
     }
 
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
-        if (movieList == null) {
-            return;
-        }
 
         final MovieEntity movie = getItem(position);
         if (movie != null) {
