@@ -4,7 +4,9 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
+import com.anjan.architecturecomponent.job_schedulaer.ScheduleJob;
 import com.anjan.architecturecomponent.ui.add.AddActivity;
 
 public class MainActivity extends AppCompatActivity{
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-
+        scheduleJob();
 
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, AddActivity.class);
@@ -69,6 +72,21 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    private void scheduleJob(){
+        SharedPreferences preferences = PreferenceManager.
+                getDefaultSharedPreferences(this);
+
+        if(!preferences.getBoolean("firstRunComplete", false)){
+            //schedule the job only once.
+            new ScheduleJob(this).scheduleJobFirebaseToRoomDataUpdate();
+
+            //update shared preference
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("firstRunComplete", true);
+            editor.commit();
+        }
     }
 
 
