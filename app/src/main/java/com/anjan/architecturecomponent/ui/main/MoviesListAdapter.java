@@ -19,7 +19,6 @@ import com.anjan.architecturecomponent.entity.MovieEntity;
 
 public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
-    private PagedList<MovieEntity> movieList;
     private Context context;
 
     public MoviesListAdapter(Context context) {
