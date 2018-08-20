@@ -21,9 +21,6 @@ import java.util.List;
 
 public class MoviesViewModel extends AndroidViewModel {
 
-    private static final int INITIAL_LOAD_KEY = 0;
-    private static final int PAGE_SIZE = 20;
-    private static final int PREFETCH_DISTANCE = 5;
 
     private MovieDao movieDao;
     //private LiveData<List<MovieEntity>> moviesLiveData;
@@ -33,7 +30,7 @@ public class MoviesViewModel extends AndroidViewModel {
     public MoviesViewModel(@NonNull Application application) {
         super(application);
         movieDao = MoviesDatabase.getDatabase(application).movieDao();
-        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), 20).build();
+        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), 10).build();
     }
 
     public LiveData<PagedList<MovieEntity>> getMoviesList() {
