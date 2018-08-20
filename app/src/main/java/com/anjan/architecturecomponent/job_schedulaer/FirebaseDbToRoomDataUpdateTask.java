@@ -8,6 +8,7 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.Executor;
 
 /**
  * Created by Anjan Debnath on 8/20/2018.
@@ -45,6 +46,7 @@ public class FirebaseDbToRoomDataUpdateTask {
                     }
                 });
     }
+
     public class TaskExecutor implements Executor {
         @Override
         public void execute(@NonNull Runnable runnable) {
@@ -52,6 +54,7 @@ public class FirebaseDbToRoomDataUpdateTask {
             t.start();
         }
     }
+
     public class RoomUpdateTask implements Runnable{
         private List<Coupon> cpnList;
         private Context context;
@@ -64,6 +67,7 @@ public class FirebaseDbToRoomDataUpdateTask {
             insertLatestCouponsIntoLocalDb(cpnList, context);
         }
     }
+
     private void insertLatestCouponsIntoLocalDb(List<Coupon> cpns, Context ctx){
         couponsDb = Room.databaseBuilder(ctx,
                 CouponsDb.class, "coupons db").build();
@@ -78,6 +82,7 @@ public class FirebaseDbToRoomDataUpdateTask {
         Log.d("ROOM", "number of local records " +
                 couponsDb.CouponsDb().getCoupons().size());
     }
+
     private String getTodaysDate(){
         Date date = Calendar.getInstance().getTime();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
