@@ -34,12 +34,9 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
         itemView.setTag(movieEntity.id);
         titleText.setText(movieEntity.movieName);
         DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
-        final String directorFullName;
+
         if (director != null) {
             directorText.setText(director.fullName);
-            directorFullName = director.fullName;
-        } else {
-            directorFullName = "";
         }
 
 
