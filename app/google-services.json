@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "129079238439",
+    "firebase_url": "https://gaad-aab4d.firebaseio.com",
+    "project_id": "gaad-aab4d",
+    "storage_bucket": "gaad-aab4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129079238439:android:d5c84b6797092017",
+        "android_client_info": {
+          "package_name": "com.anjan.architecturecomponent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129079238439-r2866qqus0616qo8n328htgcl94uk01c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH702F660FNSpODv8FxcL52XYH-RsTFsU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

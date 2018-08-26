@@ -38,7 +38,9 @@ public class AddActivity extends AppCompatActivity {
 
                 String movie = editTextMovie.getEditableText().toString();
                 String director = editTextDirector.getEditableText().toString();
-                DirectorEntity directorEntity = new DirectorEntity(director);
+
+                addMoviesViewModel.insertToFirebaseCloud(movie, director);
+                /*DirectorEntity directorEntity = new DirectorEntity(director);
 
                 //check duplicate id can not be inserted
                 directorId = addMoviesViewModel.findDirector(director);
@@ -46,7 +48,7 @@ public class AddActivity extends AppCompatActivity {
                     directorId = (int) addMoviesViewModel.insertDirector(directorEntity);
                 }
                 MovieEntity movieEntity = new MovieEntity(movie, directorId);
-                addMoviesViewModel.insertMovie(movieEntity);
+                addMoviesViewModel.insertMovie(movieEntity);*/
 
 
                 editTextMovie.setText("");

@@ -5,9 +5,17 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.anjan.architecturecomponent.MoviesDatabase;
+import com.anjan.architecturecomponent.model.Movies;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executor;
 
 /**
@@ -16,7 +24,7 @@ import java.util.concurrent.Executor;
  */
 public class FirebaseDbToRoomDataUpdateTask {
 
-    private CouponsDb couponsDb;
+    private MoviesDatabase moviesDatabase;
     private FirebaseFirestore firestoreDB;
     private TaskExecutor taskExecutor;
 
@@ -25,15 +33,14 @@ public class FirebaseDbToRoomDataUpdateTask {
         taskExecutor = new TaskExecutor();
     }
     public void getCouponsFromFirebaseUpdateLocalDb(final Context ctx) {
-        firestoreDB.collection("coupons")
-                .whereEqualTo("createDt", getTodaysDate())
+        firestoreDB.collection("movies")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
 
-                            List<Coupon> cpnList = task.getResult().toObjects(Coupon.class);
+                            List<Movies> cpnList = task.getResult().toObjects(Movies.class);
                             Log.d("FIREBASE", "no of coupons "+cpnList.size());
 
                             //Run updating local database on worker thread.
@@ -56,32 +63,32 @@ public class FirebaseDbToRoomDataUpdateTask {
     }
 
     public class RoomUpdateTask implements Runnable{
-        private List<Coupon> cpnList;
+        private List<Movies> cpnList;
         private Context context;
-        public RoomUpdateTask(List<Coupon> cpnListIn, Context ctx){
+        public RoomUpdateTask(List<Movies> cpnListIn, Context ctx){
             cpnList = cpnListIn;
             context = ctx;
         }
         @Override
         public void run() {
-            insertLatestCouponsIntoLocalDb(cpnList, context);
+            //insertLatestCouponsIntoLocalDb(cpnList, context);
         }
     }
 
-    private void insertLatestCouponsIntoLocalDb(List<Coupon> cpns, Context ctx){
-        couponsDb = Room.databaseBuilder(ctx,
+    /*private void insertLatestCouponsIntoLocalDb(List<Movies> cpns, Context ctx){
+        moviesDatabase = Room.databaseBuilder(ctx,
                 CouponsDb.class, "coupons db").build();
 
         //insert new coupons
-        couponsDb.CouponsDb().insertCoupons(cpns);
+        moviesDatabase.CouponsDb().insertCoupons(cpns);
 
         //delete expired coupons
-        couponsDb.CouponsDb().deleteCoupons(getTodaysDate());
+        moviesDatabase.CouponsDb().deleteCoupons(getTodaysDate());
         Log.d("ROOM", "local database update complete");
 
         Log.d("ROOM", "number of local records " +
-                couponsDb.CouponsDb().getCoupons().size());
-    }
+                moviesDatabase.CouponsDb().getCoupons().size());
+    }*/
 
     private String getTodaysDate(){
         Date date = Calendar.getInstance().getTime();
