@@ -18,6 +18,9 @@ public class DbUpdateJobService extends JobService {
         FirebaseDbToRoomDataUpdateTask dbUpdateTask = new FirebaseDbToRoomDataUpdateTask();
         dbUpdateTask.getMoviesFromFirebaseUpdateLocalDb(this);
 
+        //Call Job Finished
+        //jobFinished(params, false );
+
         return false;
     }
 

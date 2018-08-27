@@ -1,9 +1,12 @@
 package com.anjan.architecturecomponent.job_schedulaer;
 
+import android.annotation.TargetApi;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
 
@@ -14,11 +17,13 @@ import static android.content.Context.JOB_SCHEDULER_SERVICE;
 public class ScheduleJob {
 
     private Context mContext;
+    public static final String TAG = "Schedule Job";
 
     public ScheduleJob(Context context) {
         mContext = context;
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
     public void scheduleJobFirebaseToRoomDataUpdate(){
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -27,16 +32,23 @@ public class ScheduleJob {
                     .getSystemService(JOB_SCHEDULER_SERVICE);
             ComponentName componentName = new ComponentName(mContext, DbUpdateJobService.class);
 
-            long interValMillis = 1 * 60 * 1000;
+            long interValMillis = 17 * 60 * 1000;
+            long refreshTime = 5* 60 * 1000;
+
             JobInfo jobInfo = new JobInfo.Builder(1, componentName)
-                    .setPeriodic(interValMillis) // to run periodically
+                    .setPeriodic(interValMillis, refreshTime) // to run periodically
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY) // it can only start if the device is on a specific kind of network.
                     .setPersisted(true)    // task should continue to exist after the device has been rebooted.
                     .build();
 
-            jobScheduler.schedule(jobInfo);
+            int ret = jobScheduler.schedule(jobInfo);
+            if (ret == JobScheduler.RESULT_SUCCESS) {
+                Log.d(TAG, "Job scheduled successfully");
+            } else {
+                Log.d(TAG, "Job scheduling failed");
+            }
         }
 
-
+        //.setMinimumLatency(60*1000)
     }
 }
