@@ -16,7 +16,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-import com.anjan.architecturecomponent.job_schedulaer.FirebaseDbToRoomDataUpdateTask;
 import com.anjan.architecturecomponent.job_schedulaer.ScheduleJob;
 import com.anjan.architecturecomponent.ui.add.AddActivity;
 
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity{
 
 
         scheduleJob();
+
 
 
         floatingActionButton.setOnClickListener(v -> {

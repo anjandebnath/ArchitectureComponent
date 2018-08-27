@@ -16,9 +16,6 @@ import com.anjan.architecturecomponent.entity.MovieEntity;
 import com.anjan.architecturecomponent.model.Movies;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -26,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Executor;
 
 /**
  * Created by Anjan Debnath on 8/20/2018.
@@ -34,9 +30,8 @@ import java.util.concurrent.Executor;
  */
 public class FirebaseDbToRoomDataUpdateTask {
 
-    private MoviesDatabase moviesDatabase;
+
     private FirebaseFirestore firestoreDB;
-    private TaskExecutor taskExecutor;
     private MovieDao movieDao;
     private DirectorDao directorDao;
     public static final String CHANNEL_ID = "default";
@@ -45,7 +40,7 @@ public class FirebaseDbToRoomDataUpdateTask {
     public FirebaseDbToRoomDataUpdateTask(){
 
         firestoreDB = FirebaseFirestore.getInstance();
-        taskExecutor = new TaskExecutor();
+
     }
 
 
@@ -67,7 +62,6 @@ public class FirebaseDbToRoomDataUpdateTask {
 
                             //Run updating local database on worker thread.
                             new TaskExecute(moviesList, context).execute();
-                            //taskExecutor.execute(new RoomUpdateTask(moviesList, context));
 
                         } else {
                             Log.d("FIREBASE", "Error getting documents: ",
@@ -111,26 +105,6 @@ public class FirebaseDbToRoomDataUpdateTask {
 
     }
 
-    public class TaskExecutor implements Executor {
-        @Override
-        public void execute(@NonNull Runnable runnable) {
-            Thread t =  new Thread(runnable);
-            t.start();
-        }
-    }
-
-    public class RoomUpdateTask implements Runnable{
-        private List<Movies> moviesList;
-        private Context context;
-        public RoomUpdateTask(List<Movies> moviesList, Context ctx){
-            this.moviesList = moviesList;
-            context = ctx;
-        }
-        @Override
-        public void run() {
-            insertLatestCouponsIntoLocalDb(moviesList);
-        }
-    }
 
     private void insertLatestCouponsIntoLocalDb(List<Movies> moviesList){
 
@@ -158,11 +132,6 @@ public class FirebaseDbToRoomDataUpdateTask {
 
             }
         }
-
-
-
-
-
 
     }
 
