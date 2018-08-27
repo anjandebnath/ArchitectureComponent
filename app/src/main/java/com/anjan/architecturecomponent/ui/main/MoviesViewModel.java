@@ -57,7 +57,7 @@ public class MoviesViewModel extends AndroidViewModel {
     }
 
 
-    public void fetchDataFromServer(){
+    /*public void fetchDataFromServer(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("movies")
                 .get()
@@ -66,6 +66,7 @@ public class MoviesViewModel extends AndroidViewModel {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
+
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
@@ -73,5 +74,5 @@ public class MoviesViewModel extends AndroidViewModel {
                         }
                     }
                 });
-    }
+    }*/
 }

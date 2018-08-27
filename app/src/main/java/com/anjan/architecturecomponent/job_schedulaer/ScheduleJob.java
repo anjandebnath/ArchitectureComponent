@@ -27,7 +27,7 @@ public class ScheduleJob {
                     .getSystemService(JOB_SCHEDULER_SERVICE);
             ComponentName componentName = new ComponentName(mContext, DbUpdateJobService.class);
 
-            long interValMillis = 5 * 1000;
+            long interValMillis = 1 * 60 * 1000;
             JobInfo jobInfo = new JobInfo.Builder(1, componentName)
                     .setPeriodic(interValMillis) // to run periodically
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY) // it can only start if the device is on a specific kind of network.

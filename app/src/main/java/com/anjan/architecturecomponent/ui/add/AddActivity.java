@@ -39,7 +39,10 @@ public class AddActivity extends AppCompatActivity {
                 String movie = editTextMovie.getEditableText().toString();
                 String director = editTextDirector.getEditableText().toString();
 
+                // to insert data to firebase
                 addMoviesViewModel.insertToFirebaseCloud(movie, director);
+
+                // to insert data to room
                 /*DirectorEntity directorEntity = new DirectorEntity(director);
 
                 //check duplicate id can not be inserted

@@ -16,6 +16,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
+import com.anjan.architecturecomponent.job_schedulaer.FirebaseDbToRoomDataUpdateTask;
 import com.anjan.architecturecomponent.job_schedulaer.ScheduleJob;
 import com.anjan.architecturecomponent.ui.add.AddActivity;
 
@@ -48,16 +49,18 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(moviesListAdapter);
 
-        moviesViewModel.fetchDataFromServer();
 
-        /*moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
+        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
             @Override
             public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
                 moviesListAdapter.submitList(movieEntities);
             }
-        });*/
+        });
+
+
 
         scheduleJob();
+
 
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, AddActivity.class);

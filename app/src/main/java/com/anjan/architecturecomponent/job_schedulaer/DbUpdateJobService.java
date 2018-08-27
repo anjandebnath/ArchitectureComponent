@@ -14,6 +14,10 @@ public class DbUpdateJobService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+
+        FirebaseDbToRoomDataUpdateTask dbUpdateTask = new FirebaseDbToRoomDataUpdateTask();
+        dbUpdateTask.getMoviesFromFirebaseUpdateLocalDb(this);
+
         return false;
     }
 
