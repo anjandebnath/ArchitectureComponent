@@ -31,6 +31,6 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 ## Accessibility
 
-- When labeling graphical elements, such ```diff+as```` `ImageView` and `ImageButton` objects, use the `android:contentDescription` XML attribute for static elements and the `setContentDescription()` method for dynamic elements.
+- When labeling graphical elements, such `ImageView` and `ImageButton` objects, use the `android:contentDescription` XML attribute for static elements and the `setContentDescription()` method for dynamic elements.
 
 
