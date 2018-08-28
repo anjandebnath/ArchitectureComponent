@@ -29,29 +29,8 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - Change the behavior of the app based on user preferences
 
 
-## Job Scheduler example
+## Accessibility
+
+- When labeling graphical elements, such ```diff+as```` `ImageView` and `ImageButton` objects, use the `android:contentDescription` XML attribute for static elements and the `setContentDescription()` method for dynamic elements.
 
 
-### How it works
-![](https://github.com/anjandebnath/ArchitectureComponent/blob/job_schedular/img/job1.jpg)
-
-
-
-![](https://github.com/anjandebnath/ArchitectureComponent/blob/job_schedular/img/job2.png)
-
-### JobService
-
-**JobService** is an android service component with callback methods which the **JobSchedule** calls when a job needs to be run.
-That means your **background job** code needs to be added to **callback methods of JobService**.
-
-### Scheduling Job (Job Scheduler)
-To schedule a job, first you need to get JobScheduler instance by calling getSystemService on the context object passing JOB_SCHEDULER_SERVICE argument to it.
-
-### JobInfo
-JobInfo.Builder has various setter methods which allow you to define your Job.
-
-
-### How this example work?
-
-From Firebase real time database fetch data periodically and store into local database.
-[link1](http://www.zoftino.com/android-job-scheduler-example) and [Firebase](https://www.androidhive.info/2016/10/android-working-with-firebase-realtime-database/)
