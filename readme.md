@@ -33,4 +33,44 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 - When labeling graphical elements, such `ImageView` and `ImageButton` objects, use the `android:contentDescription` XML attribute for static elements and the `setContentDescription()` method for dynamic elements.
 
+             <ImageButton
+               ..
+               ..
+               android:contentDescription="@string/share"
+               />
+               
+               
+             ImageView playPauseImageView = new ImageView(...);
+             playPauseImageView.setImageResource(R.drawable.ic_pause);            
+             playPauseImageView.setContentDescription(getString(R.string.pause));
+             
+- When labeling editable elements, such as `EditText` objects, use the `android:hint` XML attribute for static elements and the `setHint()` method for dynamic elements to indicate each element's purpose.  
 
+            <EditText
+               ..
+               ..
+               android:hint="Director"
+               />    
+               
+- If your app is installed on a device running Android 4.2 (API level 17) or higher, use the `android:labelFor` attribute when labeling View objects that serve as content labels for other View objects. 
+  **Editable items in an app allow users to enter text. Each editable item should have a descriptive label stating its purpose.**
+  
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                   ..
+                   android:text="Username field"
+                   android:labelFor="@id/email_subject" />
+                <EditText
+                    android:id = "@+id/email_subject"
+                    android:hint = "Username"
+                    .. />
+            </LinearLayout>  
+  
+               
+
+- `Note: Accessibility services automatically capture the text that appears in TextView objects, so you usually don't need to label these elements.`       
+
+- `Note: Many accessibility services, such as TalkBack and BrailleBack, automatically announce an element's type after announcing its label, so you shouldn't include element types in your labels. For example, "submit" is a good label for a Button object, but "submitButton" isn't a good label.`
