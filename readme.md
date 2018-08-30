@@ -61,7 +61,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
                 android:orientation="vertical">
                 <TextView
                    ..
-                   android:text="Username field"
+                   android:text="You can add User name"
                    android:labelFor="@id/email_subject" />
                 <EditText
                     android:id = "@+id/email_subject"
@@ -74,3 +74,6 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - `Note: Accessibility services automatically capture the text that appears in TextView objects, so you usually don't need to label these elements.`       
 
 - `Note: Many accessibility services, such as TalkBack and BrailleBack, automatically announce an element's type after announcing its label, so you shouldn't include element types in your labels. For example, "submit" is a good label for a Button object, but "submitButton" isn't a good label.`
+
+
+[link](https://codelabs.developers.google.com/codelabs/basic-android-accessibility/index.html?index=..%2F..%2Findex#0)
