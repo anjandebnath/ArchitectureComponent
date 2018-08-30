@@ -4,16 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MainActivity">
 
+    <com.anjan.architecturecomponent.custom_view.ColorOptionsView
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_marginTop="16dp"
+        android:background="?android:selectableItemBackground"
+        android:onClick="onClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        custom:titleText="Background color"
+        custom:valueColor="@android:color/holo_green_light" />
 
-    <android.support.v7.widget.RecyclerView
+    <com.anjan.architecturecomponent.custom_view.ColorOptionsView
+        android:id="@+id/view2"
+
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_marginTop="16dp"
+        android:background="?android:selectableItemBackground"
+        android:onClick="onClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view1"
+        custom:titleText="Foreground color"
+        custom:valueColor="@android:color/holo_orange_dark" />
+
+
+    <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"/>-->
 
 
     <android.support.design.widget.FloatingActionButton

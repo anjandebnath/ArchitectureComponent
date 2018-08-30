@@ -19,7 +19,7 @@ import com.anjan.architecturecomponent.entity.MovieEntity;
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
  */
 
-@Database(entities = {MovieEntity.class, DirectorEntity.class}, version = 1)
+@Database(entities = {MovieEntity.class, DirectorEntity.class}, version = 1, exportSchema = false)
 
 public abstract class MoviesDatabase extends RoomDatabase {
 

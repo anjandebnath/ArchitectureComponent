@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
@@ -25,9 +27,7 @@ public class MainActivity extends AppCompatActivity{
     FloatingActionButton floatingActionButton;
 
 
-    RecyclerView recyclerView;
-    MoviesListAdapter moviesListAdapter;
-    MoviesViewModel moviesViewModel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,38 +36,20 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         floatingActionButton = findViewById(R.id.floatingActionButton4);
-        recyclerView = findViewById(R.id.recyclerview);
-
-
-        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
-        moviesListAdapter = new MoviesListAdapter(MainActivity.this);
-
-
-        recyclerView.setHasFixedSize(true);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(moviesListAdapter);
-
-
-        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
-            @Override
-            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
-                moviesListAdapter.submitList(movieEntities);
-            }
-        });
-
-
-
-        scheduleJob();
-
-
-
         floatingActionButton.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, AddActivity.class);
             startActivity(i);
         });
 
+
+
     }
+
+    public void onClicked(View view) {
+        String text = view.getId() == R.id.view1 ? "Background" : "Foreground";
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     protected void onResume() {
