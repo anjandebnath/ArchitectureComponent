@@ -16,11 +16,24 @@ import com.anjan.architecturecomponent.R;
  */
 public class MovieListView extends LinearLayout {
 
+    String movieTitle, directorName;
+    TextView movieNameView;
+    TextView directorNameView;
 
+    // this constructor will be used when value will be set from dynamic sources
     public MovieListView(Context context) {
         super(context);
+
+        //set orientation and gravity
+        setOrientation(LinearLayout.VERTICAL);
+
+        // set layout of the custom view
+        LayoutInflater.from(context).inflate(R.layout.view_list_movie, this, true);
+
+        init(movieTitle, directorName);
     }
 
+    // this constructor will be used when value will be set from xml
     public MovieListView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
@@ -30,7 +43,6 @@ public class MovieListView extends LinearLayout {
         // set layout of the custom view
         LayoutInflater.from(context).inflate(R.layout.view_list_movie, this, true);
 
-        String movieTitle, directorName;
 
         // get styleable attrs
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MovieListView, 0, 0);
@@ -48,13 +60,21 @@ public class MovieListView extends LinearLayout {
 
     private void init(String movieTitle, String directorName){
 
-        TextView movieNameView = findViewById(R.id.tvMovieTitle);
-        TextView directorNameView = findViewById(R.id.tvMovieDirectorFullName);
+        movieNameView = findViewById(R.id.tvMovieTitle);
+        directorNameView = findViewById(R.id.tvMovieDirectorFullName);
 
 
         movieNameView.setText(movieTitle);
         directorNameView.setText(directorName);
 
+    }
+
+    public void setMovieTitle(String movieTitle){
+        movieNameView.setText(movieTitle);
+    }
+
+    public void setDirectorName(String directorName){
+        directorNameView.setText(directorName);
     }
 
 

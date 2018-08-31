@@ -107,7 +107,11 @@ At first you can set the layout with *LinearLayout* and after placing the view c
 In my CustomView layout I have TextViews for a title and subtitle. I want to be able to set these in any layout where they are included, so I have to add custom attributes in my attrs.xml file.
 
 
+### Example
 
+- `MovieListView.java` is the Custom view that will be set on `RecyclerView Adapter`.
+
+- `ColorOptionsView.java` is the Custom view that will be used to get idea of `accessibility hook`.
 
 
 

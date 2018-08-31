@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.R;
+import com.anjan.architecturecomponent.custom_view.MovieListView;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
@@ -17,34 +18,36 @@ import com.anjan.architecturecomponent.entity.MovieEntity;
  */
 public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
-    private TextView titleText;
-    private TextView directorText;
+    private MovieListView movieListView;
     private Context mContext;
 
     MoviesViewHolder(View itemView, Context context) {
         super(itemView);
+        movieListView = (MovieListView) itemView;
         mContext = context;
-        titleText = (TextView) itemView.findViewById(R.id.tvMovieTitle);
-        directorText = (TextView) itemView.findViewById(R.id.tvMovieDirectorFullName);
 
+    }
+
+    public MovieListView getMovieListView() {
+        return movieListView;
     }
 
     void bindTo(MovieEntity movieEntity) {
 
-        itemView.setTag(movieEntity.id);
-        titleText.setText(movieEntity.movieName);
+        getMovieListView().setTag(movieEntity.id);
+        getMovieListView().setMovieTitle(movieEntity.movieName);
         DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
 
         if (director != null) {
-            directorText.setText(director.fullName);
+            getMovieListView().setDirectorName(director.fullName);
         }
 
 
     }
 
-    void clear() {
+    /*void clear() {
         itemView.invalidate();
         titleText.invalidate();
         directorText.invalidate();
-    }
+    }*/
 }

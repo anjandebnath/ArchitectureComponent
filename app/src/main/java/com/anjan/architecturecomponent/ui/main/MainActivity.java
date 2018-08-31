@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity{
 
     FloatingActionButton floatingActionButton;
 
-
+    RecyclerView recyclerView;
+    MoviesListAdapter moviesListAdapter;
+    MoviesViewModel moviesViewModel;
 
 
     @Override
@@ -42,13 +44,32 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
+        recyclerView = findViewById(R.id.recyclerview);
+
+
+        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        moviesListAdapter = new MoviesListAdapter(MainActivity.this);
+
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(moviesListAdapter);
+
+        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
+                moviesListAdapter.submitList(movieEntities);
+            }
+        });
+
 
     }
 
-    /*public void onClicked(View view) {
-        String text = view.getId() == R.id.view1 ? "Background" : "Foreground";
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }*/
+
+    public void onClicked(View view){
+
+    }
 
 
     @Override
@@ -61,20 +82,7 @@ public class MainActivity extends AppCompatActivity{
         super.onPause();
     }
 
-    private void scheduleJob(){
-        SharedPreferences preferences = PreferenceManager.
-                getDefaultSharedPreferences(this);
 
-        if(!preferences.getBoolean("firstRunComplete", false)){
-            //schedule the job only once.
-            new ScheduleJob(this).scheduleJobFirebaseToRoomDataUpdate();
-
-            //update shared preference
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putBoolean("firstRunComplete", true);
-            editor.commit();
-        }
-    }
 
 
 

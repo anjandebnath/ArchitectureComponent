@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.anjan.architecturecomponent.R;
+import com.anjan.architecturecomponent.custom_view.MovieListView;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
 /**
@@ -18,12 +19,11 @@ import com.anjan.architecturecomponent.entity.MovieEntity;
  */
 
 public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
-    private LayoutInflater layoutInflater;
+
     private Context context;
 
     public MoviesListAdapter(Context context) {
         super(DIFF_CALLBACK);
-        this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
@@ -48,8 +48,17 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
 
     @Override
     public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View itemView = layoutInflater.inflate(R.layout.item_list_movie, parent, false);
-        return new MoviesViewHolder(itemView, context);
+        //final View itemView = layoutInflater.inflate(R.layout.item_list_movie, parent, false);
+
+        // no need for a LayoutInflater instance— the custom view inflates itself
+        MovieListView movieListView = new MovieListView(parent.getContext());
+        // manually set the CustomView's size
+        int height = 150;
+        movieListView.setLayoutParams(new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                height
+        ));
+        return new MoviesViewHolder(movieListView, context);
     }
 
     @Override
@@ -58,8 +67,6 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
         final MovieEntity movie = getItem(position);
         if (movie != null) {
             holder.bindTo(movie);
-        } else {
-            holder.clear();
         }
     }
 
