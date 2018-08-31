@@ -5,8 +5,10 @@ import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.anjan.architecturecomponent.R;
 
@@ -75,6 +77,49 @@ public class MovieListView extends LinearLayout {
 
     public void setDirectorName(String directorName){
         directorNameView.setText(directorName);
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        super.onTouchEvent(event);
+
+        // Listening for the down and up touch events
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                return true;
+
+            case MotionEvent.ACTION_UP:
+
+
+                performClick(); // Call this method to handle the response, and
+                // thereby enable accessibility services to
+                // perform this action for a user who cannot
+                // click the touchscreen.
+                return true;
+
+        }
+        return false; // Return false for other touch events
+
+    }
+
+
+    // Because we call this from onTouchEvent, this code will be executed for both
+    // normal touch events and for when the system calls this using Accessibility
+    @Override
+    public boolean performClick() {
+        // Calls the super implementation, which generates an AccessibilityEvent
+        // and calls the onClick() listener on the view, if any
+        super.performClick();
+
+        // Handle the action for the custom click here
+        clickOnMovie();
+
+        return true;
+    }
+
+    private void clickOnMovie() {
+        Toast.makeText(getContext(), "Clicked on Movie Name", Toast.LENGTH_SHORT).show();
     }
 
 

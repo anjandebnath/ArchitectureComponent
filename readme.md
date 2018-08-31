@@ -115,7 +115,104 @@ In my CustomView layout I have TextViews for a title and subtitle. I want to be 
 
 
 
+### How to enable Accessibility hook on Custom View
 
+### 1. Implement accessibility API methods
+
+_@Override below methods_
+
+ - `sendAccessibilityEvent()`
+ - `sendAccessibilityEventUnchecked()`
+ - `dispatchPopulateAccessibilityEvent()`
+ - `onPopulateAccessibilityEvent()`
+ - `onInitializeAccessibilityEvent()`
+ - `onInitializeAccessibilityNodeInfo()`
+ - `onRequestSendAccessibilityEvent()`
+ 
+ _**Here the important fact is you should implement the following accessibility methods for your custom view class**_
+ 
+ _@Override below methods always_
+ 
+ - `dispatchPopulateAccessibilityEvent()`
+ - `onPopulateAccessibilityEvent()`
+ - `onInitializeAccessibilityEvent()`
+ - `onInitializeAccessibilityNodeInfo()`
+ 
+ _When we will use them_
+ 
+ **1.sendAccessibilityEvent()** : 
+ 
+     if a user clicks on your custom view, you will be required to override `onTouchEvent(MotionEvent event)`, then apply switch case on event.getAction(), then at case `MotionEvent.ACTION_UP` add `sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED).`
+     
+     You typically do not need to implement this method unless you are creating a custom view.
+     
+   **Send accessibility events type:** Depending on the specifics of your custom view, it may need to send `AccessibilityEvent objects` at a different times or for events not handled by the default implementation. The View class provides a default implementation for these event types:
+     
+     Starting with API Level 4:
+     TYPE_VIEW_CLICKED
+     TYPE_VIEW_LONG_CLICKED
+     TYPE_VIEW_FOCUSED
+     
+     Starting with API Level 14:
+     TYPE_VIEW_SCROLLED
+     TYPE_VIEW_HOVER_ENTER
+     TYPE_VIEW_HOVER_EXIT
+     
+     In general, you should send an AccessibilityEvent whenever the content of your custom view changes.
+     
+     For example, if you are implementing a custom slider bar that allows a user to select a numeric value by pressing the left or right arrows, your custom view should emit an event of type TYPE_VIEW_TEXT_CHANGED whenever the slider value changes. 
+     
+     
+ 
+ **2.sendAccessibilityEventUnchecked()** : 
+ 
+     same as sendAccessibilityEvent(), regardless of the fact if or if not accessibility is enabled in the system settings.
+       
+     You typically do not need to implement this method for a custom view.
+
+
+ **3.dispatchPopulateAccessibilityEvent()** :
+ 
+     
+     If you are creating a custom view component, you must provide some information about the content and characteristics of the view.  
+     
+     The minimum requirement for providing information to accessibility services with a custom view is to implement dispatchPopulateAccessibilityEvent() 
+     
+     and makes your custom view compatible with accessibility services on Android 1.6 (API Level 4) and higher.
+     
+     
+ **4.onPopulateAccessibilityEvent()** :
+ 
+     Use the onPopulateAccessibilityEvent() method specifically for adding or modifying the text content of the event, which is turned into audible prompts by accessibility services such as TalkBack.
+     
+    
+     This method sets the spoken text prompt of the AccessibilityEvent for your view. 
+     
+     This method is also called if the view is a child of a view which generates an accessibility event. 
+     
+     For example, a Textview with content description “Text View” was clicked, a sound prompt “Text View was clicked” may be triggered if TYPE_VIEW_CLICKED was dispatched.    
+
+
+ **5.onInitializeAccessibilityEvent()**:
+ 
+    Use the onInitializeAccessibilityEvent() method for populating additional information about the event, such as the selection state of the view.
+ 
+ 
+ **6.onInitializeAccessibilityNodeInfo()**:
+ 
+      Implement the onInitializeAccessibilityNodeInfo() method. 
+      
+      The AccessibilityNodeInfo objects populated by this method are used by accessibility services to investigate the view hierarchy that generated an accessibility event after receiving that event, to obtain a more detailed context information and provide appropriate feedback to users.
+      
+      
+   **Important Note**
+   _ViewCompat.setAccessibilityDelegate() is used to override the 3 methods._
+ 
+### Handle custom touch events
+
+- To handle these requirements (`maintain compatibility with accessibility services`) in an efficient way, your code should override the `performClick()` method, which must call the super implementation of this method and then execute whatever actions are required by the click event. When the custom click action is detected, that code should then call your `performClick()` method. 
+
+- Be careful not to call `performClick()` twice if you also have it in `onTouchEvent(MotionEvent event)`.
 
 
 

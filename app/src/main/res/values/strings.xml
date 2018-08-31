@@ -3,4 +3,6 @@
     <string name="title_activity_add">AddActivity</string>
     <string name="notification_title">Firebase Cloud</string>
     <string name="notification_content">Data from Firebase cloud has been saved into local database</string>
+    <string name="click_background">Click on Background to activate</string>
+    <string name="my_click_desc">My click description</string>
 </resources>
