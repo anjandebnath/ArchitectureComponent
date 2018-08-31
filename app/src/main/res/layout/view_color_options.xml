@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<merge xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <TextView
+        android:id="@+id/color_options_view_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
         android:textSize="18sp"
-        />
+         />
 
     <View
+        android:id="@+id/color_options_view"
         android:layout_width="26dp"
         android:layout_height="26dp"
         android:layout_centerVertical="true"
@@ -19,12 +22,13 @@
         />
 
     <ImageView
+        android:id="@+id/color_options_view_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:contentDescription="color image"
         android:layout_centerVertical="true"
-        android:visibility="gone"
+        android:visibility="visible"
         />
 
 </merge>

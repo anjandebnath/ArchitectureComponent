@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:movie="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MainActivity">
 
-    <com.anjan.architecturecomponent.custom_view.ColorOptionsView
+    <!--<com.anjan.architecturecomponent.custom_view.ColorOptionsView
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
@@ -33,7 +33,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view1"
         custom:titleText="Foreground color"
-        custom:valueColor="@android:color/holo_orange_dark" />
+        custom:valueColor="@android:color/holo_orange_dark" />-->
+
+    <com.anjan.architecturecomponent.custom_view.MovieListView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        movie:directorName="James Camerun"
+        movie:movieName="Titanic"></com.anjan.architecturecomponent.custom_view.MovieListView>
 
 
     <!--<android.support.v7.widget.RecyclerView

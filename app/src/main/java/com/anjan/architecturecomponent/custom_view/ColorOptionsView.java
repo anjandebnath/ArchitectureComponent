@@ -1,5 +1,6 @@
 package com.anjan.architecturecomponent.custom_view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
@@ -21,38 +22,59 @@ import com.anjan.architecturecomponent.R;
  */
 public class ColorOptionsView extends LinearLayout{
 
-    private View mValue;
-    private ImageView mImage;
+
+
 
     public ColorOptionsView(Context context) {
         super(context);
     }
 
+    @SuppressLint("ResourceAsColor")
     public ColorOptionsView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.ColorOptionsView, 0, 0);
-        String titleText = a.getString(R.styleable.ColorOptionsView_titleText);
-        @SuppressWarnings("ResourceAsColor")
-        int valueColor = a.getColor(R.styleable.ColorOptionsView_valueColor,
-                android.R.color.holo_blue_light);
-        a.recycle();
-
+        //set orientation and gravity
         setOrientation(LinearLayout.HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
 
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.view_color_options, this, true);
+        // set layout of the custom view
+        LayoutInflater.from(context).inflate(R.layout.view_color_options, this, true);
 
-        TextView title = (TextView) getChildAt(0);
-        title.setText(titleText);
 
-        mValue = getChildAt(1);
-        mValue.setBackgroundColor(valueColor);
+        String titleText;
+        int valueColor = 0;
 
-        mImage = (ImageView) getChildAt(2);
+        // get styleable attrs
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.ColorOptionsView, 0, 0);
+
+        try{
+            titleText = a.getString(R.styleable.ColorOptionsView_titleText);
+            valueColor = a.getColor(R.styleable.ColorOptionsView_valueColor, android.R.color.holo_blue_light);
+        }finally{
+            a.recycle();
+        }
+
+
+        // Throw an exception if required attributes are not set
+        if (titleText == null) {
+            throw new RuntimeException("No title provided");
+        }
+
+
+        init(titleText, valueColor);
+
+    }
+
+    private void init(String title, int valueColor) {
+
+        View view = findViewById(R.id.color_options_view);
+        TextView titleView = (TextView) findViewById(R.id.color_options_view_textView);
+        ImageView colorView = (ImageView) findViewById(R.id.color_options_view_imageView);
+
+        view.setBackgroundColor(valueColor);
+        titleView.setText(title);
+
     }
 
     public ColorOptionsView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -107,11 +129,5 @@ public class ColorOptionsView extends LinearLayout{
         return super.onRequestSendAccessibilityEvent(child, event);
     }
 
-    public void setValueColor(int color) {
-        mValue.setBackgroundColor(color);
-    }
 
-    public void setImageVisible(boolean visible) {
-        mImage.setVisibility(visible ? View.VISIBLE : View.GONE);
-    }
 }

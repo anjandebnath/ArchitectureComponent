@@ -6,4 +6,9 @@
         <attr name="valueColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="MovieListView">
+        <attr name="movieName" format="string" />
+        <attr name="directorName" format="string" />
+    </declare-styleable>
+
 </resources>

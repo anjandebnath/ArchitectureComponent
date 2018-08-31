@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvMovieTitle"
+        style="@style/movie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvMovieDirectorFullName"
+        style="@style/movie_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</merge>

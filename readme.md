@@ -11,7 +11,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - [x] Implement a custom app theme
 - [x] Display items in a RecyclerView
 - [x] Bind local data to a RecyclerView list using the paging library
-- Add accessibility hooks to a custom view
+- [x] Add accessibility hooks to a custom view
 - Implement menu-based or drawer navigation
 - Localize the app
 - [x] Display notifications, toasts, and snackbar messages
@@ -77,3 +77,60 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 
 [link](https://codelabs.developers.google.com/codelabs/basic-android-accessibility/index.html?index=..%2F..%2Findex#0) of details
+
+
+
+### How to create Custom View
+
+Sometimes you need to set a few of the same properties on the same types of views throughout your app. 
+In that case `you could make a layout and use the include tag to include it` in every layout you need it in. 
+So you can re-use it wherever you need it.
+
+That may be fine, but what `if you want to change a property on that view in one place it’s included?` 
+For example, you want to change the text colour of a TextView inside that layout. 
+`Since it’s in the included layout, you can either change it for every place it’s used or you have to do it programmatically.`
+You can’t set it through the include tag.
+
+To solve this problem, you can create a custom view by extending one of the existing views.
+
+
+### Coding Format
+
+**merge tag in xml layout**
+
+I use the `merge tag` so the layout can be `inflated directly` into my view, which is a LinearLayout.
+
+At first you can set the layout with *LinearLayout* and after placing the view components on the suitable place just remove the *layout tag with merge tag*.
+
+**attrs.xml in values folder to set styleable**
+
+In my CustomView layout I have TextViews for a title and subtitle. I want to be able to set these in any layout where they are included, so I have to add custom attributes in my attrs.xml file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

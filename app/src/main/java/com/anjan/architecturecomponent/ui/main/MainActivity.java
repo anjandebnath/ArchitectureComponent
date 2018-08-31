@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    public void onClicked(View view) {
+    /*public void onClicked(View view) {
         String text = view.getId() == R.id.view1 ? "Background" : "Foreground";
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
 
     @Override
