@@ -45,7 +45,7 @@ public class NavigationActivity extends AppCompatActivity{
         //endregion
         ActionBar actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        actionbar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp);
 
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -69,9 +69,6 @@ public class NavigationActivity extends AppCompatActivity{
                                 break;
 
                             case R.id.nav_settings:
-
-
-
                                 Toast.makeText(NavigationActivity.this, "Settings",Toast.LENGTH_SHORT).show();
                                 break;
 
@@ -93,7 +90,7 @@ public class NavigationActivity extends AppCompatActivity{
                         // close drawer when item is tapped
                         mDrawerLayout.closeDrawers();
 
-                        return false;
+                        return true;
                     }
                 });
 
