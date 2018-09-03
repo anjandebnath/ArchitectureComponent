@@ -34,3 +34,5 @@ This project covers the syllabus of `Associate Android Developer Certification`
 [Navigation Drawer](https://developer.android.com/training/implementing-navigation/nav-drawer) base tutorial.
 
 [Guideline for Navigation drawer](https://material.io/design/components/navigation-drawer.html#usage) describes when we will use it
+
+[Navigation Drawer working sample](https://github.com/stablekernel/android-master-detail-nav-drawer)
