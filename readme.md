@@ -12,7 +12,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - [x] Display items in a RecyclerView
 - [x] Bind local data to a RecyclerView list using the paging library
 - [x] Add accessibility hooks to a custom view
-- Implement menu-based or drawer navigation
+- [x] Implement menu-based or drawer navigation
 - Localize the app
 - [x] Display notifications, toasts, and snackbar messages
 - [x] Schedule a background task using JobScheduler
@@ -25,8 +25,12 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - [x] Observe and respond to changing data using LiveData
 - [x] Use a Repository to handle data operations
 - Read and parse raw resources or asset files
-- Create persistent preference data from user input
-- Change the behavior of the app based on user preferences
+- [x] Create persistent preference data from user input
+- [x] Change the behavior of the app based on user preferences
 
 
 ## Navigation Drawer 
+
+[Navigation Drawer](https://developer.android.com/training/implementing-navigation/nav-drawer) base tutorial.
+
+[Guideline for Navigation drawer](https://material.io/design/components/navigation-drawer.html#usage) describes when we will use it
