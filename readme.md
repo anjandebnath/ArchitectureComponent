@@ -32,3 +32,13 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - Read and parse raw resources or asset files
 - Create persistent preference data from user input
 - Change the behavior of the app based on user preferences
+
+
+### Branch Names:
+
+- master (**Room and Live data**)
+- paging_library (**Paging library**)
+- job_schedular (**Job Schedular**)
+- accessibility_hook (**Custom view**)
+- nav_drawer (**Navigation Drawer**)
+- user_preference (**Setting preference and menu**)
