@@ -39,6 +39,6 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - master (**Room and Live data**)
 - paging_library (**Paging library**)
 - job_schedular (**Job Schedular**)
-- accessibility_hook (**Custom view**)
+- accessibility_hook (**Custom view and accessibility**)
 - nav_drawer (**Navigation Drawer**)
 - user_preference (**Setting preference and menu**)
