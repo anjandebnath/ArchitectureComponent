@@ -1,17 +1,19 @@
 package com.anjan.architecturecomponent.ui.navigation;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ public class NavigationActivity extends AppCompatActivity{
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
     private MenuItem menuItem;
+    // index to identify current nav menu item
+    public static int navItemIndex = 0;
 
 
     @Override
@@ -36,6 +40,10 @@ public class NavigationActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_navigation);
+
+        if (savedInstanceState == null) {
+            navItemIndex = 0;
+        }
 
         //region 1.Set the toolbar as the action bar
         //end region
@@ -66,7 +74,8 @@ public class NavigationActivity extends AppCompatActivity{
         navigationView.post(new Runnable() {
             @Override
             public void run() {
-                FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+                navItemIndex = 0;
+                android.app.FragmentTransaction tx = getFragmentManager().beginTransaction();
                 tx.replace(R.id.content_frame, MyProfileFragment.newInstance());
                 tx.commit();
             }
@@ -84,6 +93,8 @@ public class NavigationActivity extends AppCompatActivity{
                 });
 
 
+
+
     }
 
     private void selectDrawerItem(MenuItem menuItem){
@@ -96,26 +107,31 @@ public class NavigationActivity extends AppCompatActivity{
         switch(id)
         {
             case R.id.nav_profile:
+                navItemIndex = 0;
                 fragmentClass = MyProfileFragment.class;
                 Toast.makeText(NavigationActivity.this, "My Profile",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_settings:
+                navItemIndex = 1;
                 fragmentClass = SettingsPreferenceFragment.class;
                 Toast.makeText(NavigationActivity.this, "Settings",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_edit_profile:
+                navItemIndex = 2;
                 fragmentClass = EditProfileFragment.class;
                 Toast.makeText(NavigationActivity.this, "Edit Profile",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_backup:
+                navItemIndex = 3;
                 fragmentClass = BackupFragment.class;
                 Toast.makeText(NavigationActivity.this, "Backup",Toast.LENGTH_SHORT).show();
                 break;
 
             default:
+                navItemIndex = 0;
                 fragmentClass = MyProfileFragment.class;
         }
 
@@ -126,7 +142,7 @@ public class NavigationActivity extends AppCompatActivity{
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -140,6 +156,8 @@ public class NavigationActivity extends AppCompatActivity{
         setTitle(menuItem.getTitle());
         // close drawer when item is tapped
         mDrawerLayout.closeDrawers();
+
+        invalidateOptionsMenu();
 
     }
 
@@ -170,6 +188,18 @@ public class NavigationActivity extends AppCompatActivity{
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        // show menu only when home fragment is selected
+        if (navItemIndex == 1) {
+            getMenuInflater().inflate(R.menu.settings_view, menu);
+        }
+
+        return true;
     }
 
     @Override

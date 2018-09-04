@@ -29,10 +29,11 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - [x] Change the behavior of the app based on user preferences
 
 
-## Navigation Drawer 
 
-[Navigation Drawer](https://developer.android.com/training/implementing-navigation/nav-drawer) base tutorial.
+### Navigation Drawer
+[Working example](https://github.com/codepath/android_guides/wiki/Fragment-Navigation-Drawer)
 
-[Guideline for Navigation drawer](https://material.io/design/components/navigation-drawer.html#usage) describes when we will use it
+[Navigation drawer with action bar menu](https://www.androidhive.info/2013/11/android-sliding-menu-using-navigation-drawer/)
 
-[Navigation Drawer working sample](https://github.com/ChrisRisner/AndroidFragmentNavigationDrawer)
+## Settings Preferences
+
