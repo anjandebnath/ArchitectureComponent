@@ -6,7 +6,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -14,7 +13,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.anjan.architecturecomponent.R;
@@ -28,7 +26,10 @@ public class NavigationActivity extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
     private Toolbar toolbar;
 
-    NavigationView navigationView;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle drawerToggle;
+    private MenuItem menuItem;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,90 +51,95 @@ public class NavigationActivity extends AppCompatActivity{
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
 
+        drawerToggle = setupDrawerToggle();
+
+        //region 4.Listen for open/close events and other state changes
+        //endregion
+        mDrawerLayout.addDrawerListener(drawerToggle);
 
 
-        //region 5.Handle navigation click events
+
+        //region 5.Handle navigation click events and set default Fragment
         //endregion
         navigationView =  findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(0).setChecked(true);
+        navigationView.post(new Runnable() {
+            @Override
+            public void run() {
+                FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+                tx.replace(R.id.content_frame, MyProfileFragment.newInstance());
+                tx.commit();
+            }
+        });
+
+
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
-                        //creating fragment object
-                        int id = menuItem.getItemId();
-                        switch(id)
-                        {
-                            case R.id.nav_profile:
-                                Toast.makeText(NavigationActivity.this, "My Profile",Toast.LENGTH_SHORT).show();
-                                break;
-
-                            case R.id.nav_settings:
-                                Toast.makeText(NavigationActivity.this, "Settings",Toast.LENGTH_SHORT).show();
-                                break;
-
-                            case R.id.nav_edit_profile:
-                                Toast.makeText(NavigationActivity.this, "Edit Profile",Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.nav_backup:
-                                Toast.makeText(NavigationActivity.this, "Backup",Toast.LENGTH_SHORT).show();
-                                break;
-                            default:
-                                return true;
-                        }
-
-
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // set title as fragment
-                        setTitle(menuItem.getTitle());
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
-
+                        selectDrawerItem(menuItem);
                         return true;
                     }
                 });
 
 
+    }
+
+    private void selectDrawerItem(MenuItem menuItem){
+
+        Fragment fragment = null;
+        Class fragmentClass = null;
+
+        //creating fragment object
+        int id = menuItem.getItemId();
+        switch(id)
+        {
+            case R.id.nav_profile:
+                fragmentClass = MyProfileFragment.class;
+                Toast.makeText(NavigationActivity.this, "My Profile",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_settings:
+                fragmentClass = SettingsPreferenceFragment.class;
+                Toast.makeText(NavigationActivity.this, "Settings",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_edit_profile:
+                fragmentClass = EditProfileFragment.class;
+                Toast.makeText(NavigationActivity.this, "Edit Profile",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.nav_backup:
+                fragmentClass = BackupFragment.class;
+                Toast.makeText(NavigationActivity.this, "Backup",Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                fragmentClass = MyProfileFragment.class;
+        }
+
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // Insert the fragment by replacing any existing fragment
-        MyProfileFragment myProfileFragment = MyProfileFragment.newInstance();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.content_frame,  myProfileFragment, "myProfile")
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .addToBackStack(null)
                 .commit();
 
-        SettingsPreferenceFragment settingsFragment = SettingsPreferenceFragment.newInstance();
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.content_frame, settingsFragment, "settings")
-                .commit();
 
-        //region 4.Listen for open/close events and other state changes
-        //endregion
-        /*mDrawerLayout.addDrawerListener(
-                new DrawerLayout.DrawerListener() {
-                    @Override
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        // Respond when the drawer's position changes
-                    }
-
-                    @Override
-                    public void onDrawerOpened(View drawerView) {
-                        // Respond when the drawer is opened
-                    }
-
-                    @Override
-                    public void onDrawerClosed(View drawerView) {
-                        // Respond when the drawer is closed
-                    }
-
-                    @Override
-                    public void onDrawerStateChanged(int newState) {
-                        // Respond when the drawer motion state changes
-                    }
-                }
-        );*/
-
+        // set item as selected to persist highlight
+        menuItem.setChecked(true);
+        // set title as fragment
+        setTitle(menuItem.getTitle());
+        // close drawer when item is tapped
+        mDrawerLayout.closeDrawers();
 
     }
 
@@ -157,6 +163,28 @@ public class NavigationActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggles
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
 
 
 

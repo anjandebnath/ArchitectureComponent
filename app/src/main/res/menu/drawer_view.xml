@@ -4,18 +4,22 @@
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_menu_profile"
-            android:title="@string/my_profile" />
+            android:title="@string/my_profile"
+            android:checkable="true"/>
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
-            android:title="@string/settings" />
+            android:title="@string/settings"
+            android:checkable="true"/>
         <item
             android:id="@+id/nav_edit_profile"
             android:icon="@drawable/ic_menu_edit"
-            android:title="@string/edit_profile" />
+            android:title="@string/edit_profile"
+            android:checkable="true"/>
         <item
             android:id="@+id/nav_backup"
             android:icon="@drawable/ic_menu_backup"
-            android:title="@string/backup" />
+            android:title="@string/backup"
+            android:checkable="true"/>
     </group>
 </menu>

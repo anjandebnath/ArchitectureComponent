@@ -9,27 +9,10 @@
 
     <!-- Layout to contain contents of main body of screen (drawer will slide over this) -->
 
-    <!-- This LinearLayout represents the contents of the screen  -->
-    <LinearLayout
+    <include
+        layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <include
-            layout="@layout/app_bar_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <!-- The main content view where fragments are loaded -->
-        <FrameLayout
-            android:id="@+id/content_frame"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-    </LinearLayout>
-
+        android:layout_height="match_parent" />
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
     <android.support.design.widget.NavigationView
