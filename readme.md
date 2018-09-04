@@ -2,6 +2,11 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 [Exam Content](https://developers.google.com/training/certification/associate-android-developer/#exam-content) is here and [x] `topics are covered here`.
 
+### Testing and debugging
+- Write and execute local JVM unit tests
+- Write and execute Android UI tests
+- Use the system log to output debug information
+- Debug and fix issues with an app's functional behavior and usability
 
 ### User interface (UI) and app functionality
 - [x] Create an Activity that displays a layout
