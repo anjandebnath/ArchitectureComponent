@@ -64,7 +64,7 @@ Espresso is a testing framework for Android to make it easy to write reliable us
 
 **Steps involved in Espresso test**
 
-[Steps](https://github.com/anjandebnath/ArchitectureComponent/blob/master/app/img/Espresso.jpeg)
+![Steps](https://github.com/anjandebnath/ArchitectureComponent/blob/master/app/img/Espresso.jpeg)
 
     onView(withId(R.id.my_view))            // withId(R.id.my_view) is a ViewMatcher     // Arrange
             .perform(click())               // click() is a ViewAction                   // Action
