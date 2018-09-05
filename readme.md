@@ -44,24 +44,3 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - user_preference (**Setting preference and menu**)
 
 
-### Espresso
-
-Espresso is a testing framework for Android to make it easy to write reliable user interface tests.
-
-**Espresso has basically three components:**
-
-- ViewMatchers - allows to find view in the current view hierarchy
-
-- ViewActions - allows to perform actions on the views
-
-- ViewAssertions - allows to assert state of a view
-
-**Base Espresso Test**
-
-        onView(ViewMatcher)       
-         .perform(ViewAction)     
-           .check(ViewAssertion); 
-
-**Steps involved in Espresso test**
-
-[]()
