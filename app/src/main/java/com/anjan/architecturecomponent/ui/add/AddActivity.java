@@ -3,6 +3,7 @@ package com.anjan.architecturecomponent.ui.add;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class AddActivity extends AppCompatActivity {
 
     AddMoviesViewModel addMoviesViewModel;
     int directorId = -1;
+    private static final String TAG = "ADD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class AddActivity extends AppCompatActivity {
                 directorId = addMoviesViewModel.findDirector(director);
                 if( directorId < 0){
                     directorId = (int) addMoviesViewModel.insertDirector(directorEntity);
+                    Log.d(TAG, "directorId"+ directorId);
                 }
                 MovieEntity movieEntity = new MovieEntity(movie, directorId);
                 addMoviesViewModel.insertMovie(movieEntity);

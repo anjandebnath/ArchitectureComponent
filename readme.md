@@ -3,9 +3,9 @@ This project covers the syllabus of `Associate Android Developer Certification`
 [Exam Content](https://developers.google.com/training/certification/associate-android-developer/#exam-content) is here and [x] `topics are covered here`.
 
 ### Testing and debugging
-- Write and execute local JVM unit tests
-- Write and execute Android UI tests
-- Use the system log to output debug information
+- [x] Write and execute local JVM unit tests
+- [x] Write and execute Android UI tests
+- [x] Use the system log to output debug information
 - Debug and fix issues with an app's functional behavior and usability
 
 ### User interface (UI) and app functionality
@@ -78,4 +78,4 @@ Espresso is a testing framework for Android to make it easy to write reliable us
 
 ![View Assertion](https://github.com/anjandebnath/ArchitectureComponent/blob/ui_test/app/img/assertion.png)     
             
- [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)    
+ [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)   and [example of seperate view component test](https://www.javatips.net/api/material-components-android-master/tests/javatests/android/support/design/widget/FloatingActionButtonTest.java)  
