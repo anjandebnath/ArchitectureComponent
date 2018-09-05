@@ -69,3 +69,6 @@ Espresso is a testing framework for Android to make it easy to write reliable us
     onView(withId(R.id.my_view))            // withId(R.id.my_view) is a ViewMatcher     // Arrange
             .perform(click())               // click() is a ViewAction                   // Action
             .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion // Assertion
+            
+            
+ [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)    
