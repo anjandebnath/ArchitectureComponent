@@ -71,4 +71,11 @@ Espresso is a testing framework for Android to make it easy to write reliable us
             .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion // Assertion
             
             
+
+![View Matcher](https://github.com/anjandebnath/ArchitectureComponent/blob/ui_test/app/img/matcher.png)  
+
+![View Action](https://github.com/anjandebnath/ArchitectureComponent/blob/ui_test/app/img/action.png)     
+
+![View Assertion](https://github.com/anjandebnath/ArchitectureComponent/blob/ui_test/app/img/assertion.png)     
+            
  [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)    
