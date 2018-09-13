@@ -23,10 +23,13 @@ public interface MovieDao {
     MovieEntity findMovieByTitle(String title);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(MovieEntity... directors);
+    void insert(MovieEntity... movieEntity);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(MovieEntity movieEntity);
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
-    void update(MovieEntity director);
+    void update(MovieEntity movieEntity);
 
     @Query("DELETE FROM movie")
     void deleteAll();

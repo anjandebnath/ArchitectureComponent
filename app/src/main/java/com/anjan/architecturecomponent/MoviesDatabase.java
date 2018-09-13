@@ -7,12 +7,23 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import com.anjan.architecturecomponent.dao.DirectorDao;
 import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -38,7 +49,7 @@ public abstract class MoviesDatabase extends RoomDatabase {
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
                                     Log.d("MoviesDatabase", "populating with data...");
-                                    new PopulateDbAsync(INSTANCE).execute();
+                                    Executors.newSingleThreadScheduledExecutor().execute(() -> fillWithDemoData(context));
                                 }
                             })
                             .build();
@@ -49,43 +60,56 @@ public abstract class MoviesDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    public void clearDb() {
-        if (INSTANCE != null) {
-            new PopulateDbAsync(INSTANCE).execute();
-        }
-    }
+
 
     public abstract MovieDao movieDao();
 
     public abstract DirectorDao directorDao();
 
-    private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
-        private final MovieDao movieDao;
-        private final DirectorDao directorDao;
 
-        public PopulateDbAsync(MoviesDatabase instance) {
-            movieDao = instance.movieDao();
-            directorDao = instance.directorDao();
+    @WorkerThread
+    private static void fillWithDemoData(Context context) {
+
+         MovieDao movieDao = getDatabase(context).movieDao();
+         DirectorDao directorDao = getDatabase(context).directorDao();
+
+        JSONArray movie = loadJsonArray(context);
+
+        try {
+            for (int i = 0; i < movie.length(); i++) {
+
+                JSONObject item = movie.getJSONObject(i);
+
+                String fullName = item.getString("full_name");
+                DirectorEntity directorEntity = new DirectorEntity(fullName);
+                String movieName = item.getString("movieName");
+                MovieEntity movieEntity = new MovieEntity(movieName, (int) directorDao.insert(directorEntity));
+
+                movieDao.insert(movieEntity);
+
+            }
+        } catch (JSONException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    private static JSONArray loadJsonArray(Context context) {
+        StringBuilder builder = new StringBuilder();
+        InputStream in = context.getResources().openRawResource(R.raw.movies);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            JSONObject json = new JSONObject(builder.toString());
+            return json.getJSONArray("movies");
+
+        } catch (IOException | JSONException exception) {
+            exception.printStackTrace();
         }
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            movieDao.deleteAll();
-            directorDao.deleteAll();
-
-            DirectorEntity directorOne = new DirectorEntity("Adam McKay");
-            DirectorEntity directorTwo = new DirectorEntity("Denis Villeneuve");
-            DirectorEntity directorThree = new DirectorEntity("Morten Tyldum");
-
-            MovieEntity movieOne = new MovieEntity("The Big Short", (int) directorDao.insert(directorOne));
-            final int dIdTwo = (int) directorDao.insert(directorTwo);
-            MovieEntity movieTwo = new MovieEntity("Arrival", dIdTwo);
-            MovieEntity movieThree = new MovieEntity("Blade Runner 2049", dIdTwo);
-            MovieEntity movieFour = new MovieEntity("Passengers", (int) directorDao.insert(directorThree));
-
-            movieDao.insert(movieOne, movieTwo, movieThree, movieFour);
-
-            return null;
-        }
+        return null;
     }
 }
