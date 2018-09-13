@@ -12,11 +12,7 @@ import android.util.Log;
 import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
 
 import java.util.List;
 
