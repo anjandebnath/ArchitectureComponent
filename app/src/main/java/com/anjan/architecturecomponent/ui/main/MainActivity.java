@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.anjan.architecturecomponent.ui.add.AddActivity;
 import com.anjan.architecturecomponent.R;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity{
             startActivity(i);
         });
 
+        subscribe();
+
     }
 
     @Override
@@ -69,6 +73,19 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    private void subscribe() {
+        final Observer<Long> elapsedTimeObserver = new Observer<Long>() {
+            @Override
+            public void onChanged(@Nullable final Long aLong) {
+                String newText = "Elapsed time" +aLong;
+                ((TextView) findViewById(R.id.timer_textview)).setText(newText);
+                Log.d("MainActivity", "Updating timer");
+            }
+        };
+
+        moviesViewModel.getElapsedTime().observe(this, elapsedTimeObserver);
     }
 
 
