@@ -3,9 +3,12 @@ package com.anjan.architecturecomponent.ui.main;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 
 import com.anjan.architecturecomponent.MoviesDatabase;
@@ -25,7 +28,7 @@ public class MoviesViewModel extends AndroidViewModel {
 
     private MovieDao movieDao;
     private LiveData<List<MovieEntity>> moviesLiveData;
-
+    private MediatorLiveData<List<MovieEntity>> moviesMediatorLiveData = new MediatorLiveData<>();
 
     private static final int ONE_SECOND = 1000;
     private MutableLiveData<Long> mElapsedTime = new MutableLiveData<>();
@@ -34,8 +37,35 @@ public class MoviesViewModel extends AndroidViewModel {
     public MoviesViewModel(@NonNull Application application) {
         super(application);
         movieDao = MoviesDatabase.getDatabase(application).movieDao();
-        moviesLiveData = movieDao.getAllMovies();
 
+        setupMutableLiveData();
+
+        setupMediatorLiveData();
+
+    }
+
+    /**
+     * this will return all movies from db and notify LiveData object
+     * @return
+     */
+    private LiveData<List<MovieEntity>> getMoviesLiveData(){
+
+        moviesLiveData = movieDao.getAllMovies();
+        return moviesLiveData;
+
+    }
+
+    private void setupMediatorLiveData(){
+
+        moviesMediatorLiveData.addSource(getMoviesLiveData(), new Observer<List<MovieEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<MovieEntity> movieEntities) {
+                moviesMediatorLiveData.setValue(movieEntities);
+            }
+        });
+    }
+
+    private void setupMutableLiveData(){
 
         mInitialTime = SystemClock.elapsedRealtime();
         Timer timer = new Timer();
@@ -49,6 +79,7 @@ public class MoviesViewModel extends AndroidViewModel {
                 mElapsedTime.postValue(newValue);
             }
         }, ONE_SECOND, ONE_SECOND);
+
     }
 
     public LiveData<Long> getElapsedTime() {
@@ -57,6 +88,10 @@ public class MoviesViewModel extends AndroidViewModel {
 
     public LiveData<List<MovieEntity>> getMoviesList() {
         return moviesLiveData;
+    }
+
+    public LiveData<List<MovieEntity>> getMediatorMoviesList(){
+        return moviesMediatorLiveData;
     }
 
     public void insert(MovieEntity... movies) {

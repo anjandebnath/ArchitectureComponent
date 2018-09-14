@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity{
     RecyclerView recyclerView;
     MoviesListAdapter moviesListAdapter;
     MoviesViewModel moviesViewModel;
+    MainFactory mainFactory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity{
         floatingActionButton = findViewById(R.id.floatingActionButton4);
         recyclerView = findViewById(R.id.recyclerview);
 
+        mainFactory = new MainFactory(this, MainActivity.this.getApplication());
 
-        moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
+        moviesViewModel = ViewModelProviders.of(this, mainFactory).get(MoviesViewModel.class);
         moviesListAdapter = new MoviesListAdapter(MainActivity.this);
 
 
@@ -49,10 +51,17 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setAdapter(moviesListAdapter);
 
 
-        moviesViewModel.getMoviesList().observe(this, new Observer<List<MovieEntity>>() {
+        /*moviesViewModel.getMoviesList().observe(this, new Observer<List<MovieEntity>>() {
             @Override
             public void onChanged(@Nullable List<MovieEntity> movies) {
                 moviesListAdapter.setMovieList(movies);
+            }
+        });*/
+
+        moviesViewModel.getMediatorMoviesList().observe(this, new Observer<List<MovieEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<MovieEntity> movieEntities) {
+                moviesListAdapter.setMovieList(movieEntities);
             }
         });
 
