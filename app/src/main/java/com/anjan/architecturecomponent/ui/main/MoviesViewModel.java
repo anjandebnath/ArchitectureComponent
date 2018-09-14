@@ -28,10 +28,11 @@ public class MoviesViewModel extends AndroidViewModel {
 
     private MovieDao movieDao;
     private LiveData<List<MovieEntity>> moviesLiveData;
+    private MutableLiveData<Long> mElapsedTime = new MutableLiveData<>();
     private MediatorLiveData<List<MovieEntity>> moviesMediatorLiveData = new MediatorLiveData<>();
 
     private static final int ONE_SECOND = 1000;
-    private MutableLiveData<Long> mElapsedTime = new MutableLiveData<>();
+
     private long mInitialTime;
 
     public MoviesViewModel(@NonNull Application application) {
@@ -55,6 +56,10 @@ public class MoviesViewModel extends AndroidViewModel {
 
     }
 
+    /**
+     * MediatorLiveData
+     * It will merge the LiveData object into Mediator Livedata
+     */
     private void setupMediatorLiveData(){
 
         moviesMediatorLiveData.addSource(getMoviesLiveData(), new Observer<List<MovieEntity>>() {
@@ -65,6 +70,10 @@ public class MoviesViewModel extends AndroidViewModel {
         });
     }
 
+    /**
+     * Mutable LiveData
+     * It will simply notify the updated time
+     */
     private void setupMutableLiveData(){
 
         mInitialTime = SystemClock.elapsedRealtime();
