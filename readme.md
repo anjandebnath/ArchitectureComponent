@@ -33,7 +33,9 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - Create persistent preference data from user input
 - Change the behavior of the app based on user preferences
 
-[link 1](https://android.jlelse.eu/pre-populate-room-database-6920f9acc870)
+[Room](https://android.jlelse.eu/pre-populate-room-database-6920f9acc870)
+
+[LiveData](http://jensklingenberg.de/learn-how-to-use-livedata/)
 
 
 ### Branch Names:
