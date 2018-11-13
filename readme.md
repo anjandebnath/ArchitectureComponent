@@ -36,6 +36,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
 [Room](https://android.jlelse.eu/pre-populate-room-database-6920f9acc870)
 [Room Tips](https://medium.com/androiddevelopers/7-pro-tips-for-room-fbadea4bfbd1)
 [Room Relations](http://androidkt.com/database-relationships/)
+[M:N relation](https://android.jlelse.eu/android-architecture-components-room-relationships-bf473510c14a)
 
 [LiveData](http://jensklingenberg.de/learn-how-to-use-livedata/)
 
