@@ -5,7 +5,10 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+
+import java.util.Date;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -31,6 +34,11 @@ public class MovieEntity {
     @ColumnInfo(name = "directorId")
     public int directorId;
 
+
+    @ColumnInfo(name = "releaseDate")
+    @TypeConverters({DateTypeConverter.class})
+    public Date releaseDate;
+
     public MovieEntity(@NonNull String movieName, int directorId) {
         this.movieName = movieName;
         this.directorId = directorId;
@@ -43,6 +51,15 @@ public class MovieEntity {
     public void setId(int id) {
         this.id = id;
     }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
 
     public String getMovieName() {
         return movieName;

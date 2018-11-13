@@ -34,6 +34,8 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - Change the behavior of the app based on user preferences
 
 [Room](https://android.jlelse.eu/pre-populate-room-database-6920f9acc870)
+[Room Tips](https://medium.com/androiddevelopers/7-pro-tips-for-room-fbadea4bfbd1)
+[Room Relations](http://androidkt.com/database-relationships/)
 
 [LiveData](http://jensklingenberg.de/learn-how-to-use-livedata/)
 
