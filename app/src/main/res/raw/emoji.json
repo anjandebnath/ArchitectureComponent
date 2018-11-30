@@ -1,0 +1,369 @@
+{
+  "emojis": [
+    {
+      "name": "grinning face",
+      "code": "U+1F600",
+      "char": "😀"
+    },
+    {
+      "name": "grinning face with smiling eyes",
+      "code": "U+1F601",
+      "char": "😁"
+    },
+    {
+      "name": "face with tear of joy",
+      "code": "U+1F602",
+      "char": "😂"
+    },
+    {
+      "name": "smiling face with open mouth",
+      "code": "U+1F603",
+      "char": "😃"
+    },
+    {
+      "name": "smiling face and smiling eyes",
+      "code": "U+1F604",
+      "char": "😄"
+    },
+    {
+      "name": "smiling face with cold sweat",
+      "code": "U+1F605",
+      "char": "😅"
+    },
+    {
+      "name": "smiling face with tightly-closed eyes",
+      "code": "U+1F606",
+      "char": "😆"
+    },
+    {
+      "name": "smiling face with halo",
+      "code": "U+1F607",
+      "char": "😇"
+    },
+    {
+      "name": "smiling face with horns",
+      "code": "U+1F608",
+      "char": "😈"
+    },
+    {
+      "name": "winking face",
+      "code": "U+1F609",
+      "char": "😉"
+    },
+    {
+      "name": "smiling face with smiling eyes",
+      "code": "U+1F60A",
+      "char": "😊"
+    },
+    {
+      "name": "face savouring delicious food",
+      "code": "U+1F60B",
+      "char": "😋"
+    },
+    {
+      "name": "relieved face",
+      "code": "U+1F60C",
+      "char": "😌"
+    },
+    {
+      "name": "smiling face heart shaped eyes",
+      "code": "U+1F60D",
+      "char": "😍"
+    },
+    {
+      "name": "smiling face with sunglass",
+      "code": "U+1F60E",
+      "char": "😎"
+    },
+    {
+      "name": "smirking face",
+      "code": "U+1F60F",
+      "char": "😏"
+    },
+    {
+      "name": "neutral face",
+      "code": "U+1F610",
+      "char": "😐"
+    },
+    {
+      "name": "expressionless face",
+      "code": "U+1F611",
+      "char": "😑"
+    },
+    {
+      "name": "unamused face",
+      "code": "U+1F612",
+      "char": "😒"
+    },
+    {
+      "name": "face with cold sweat",
+      "code": "U+1F613",
+      "char": "😓"
+    },
+    {
+      "name": "pensive face",
+      "code": "U+1F614",
+      "char": "😔"
+    },
+    {
+      "name": "confused face",
+      "code": "U+1F615",
+      "char": "😕"
+    },
+    {
+      "name": "confounded face",
+      "code": "U+1F616",
+      "char": "😖"
+    },
+    {
+      "name": "kissing face",
+      "code": "U+1F617",
+      "char": "😗"
+    },
+    {
+      "name": "face throwing a kiss",
+      "code": "U+1F618",
+      "char": "😘"
+    },
+    {
+      "name": "kissing face with smiling eyes",
+      "code": "U+1F619",
+      "char": "😙"
+    },
+    {
+      "name": "kissing face with closed eyes",
+      "code": "U+1F61A",
+      "char": "😚"
+    },
+    {
+      "name": "stuck out tongue",
+      "code": "U+1F61B",
+      "char": "😛"
+    },
+    {
+      "name": "stuck out tongue and winking eye",
+      "code": "U+1F61C",
+      "char": "😜"
+    },
+    {
+      "name": "stuck out tightly tongue closed eye",
+      "code": "U+1F61D",
+      "char": "😝"
+    },
+    {
+      "name": "disappointed face",
+      "code": "U+1F61E",
+      "char": "😞"
+    },
+    {
+      "name": "worried face",
+      "code": "U+1F61F",
+      "char": "😟"
+    },
+    {
+      "name": "angry face",
+      "code": "U+1F620",
+      "char": "😠"
+    },
+    {
+      "name": "pouting face",
+      "code": "U+1F621",
+      "char": "😡"
+    },
+    {
+      "name": "crying face",
+      "code": "U+1F622",
+      "char": "😢"
+    },
+    {
+      "name": "persevering face",
+      "code": "U+1F623",
+      "char": "😣"
+    },
+    {
+      "name": "face with look of triumph",
+      "code": "U+1F624",
+      "char": "😤"
+    },
+    {
+      "name": "disappointed but relieved face",
+      "code": "U+1F625",
+      "char": "😥"
+    },
+    {
+      "name": "frowning face with open mouth",
+      "code": "U+1F626",
+      "char": "😦"
+    },
+    {
+      "name": "anguished face",
+      "code": "U+1F627",
+      "char": "😧"
+    },
+    {
+      "name": "fearful face",
+      "code": "U+1F628",
+      "char": "😨"
+    },
+    {
+      "name": "weary face",
+      "code": "U+1F629",
+      "char": "😩"
+    },
+    {
+      "name": "sleepy face",
+      "code": "U+1F62A",
+      "char": "😪"
+    },
+    {
+      "name": "tired face",
+      "code": "U+1F62B",
+      "char": "😫"
+    },
+    {
+      "name": "grimacing face",
+      "code": "U+1F62C",
+      "char": "😬"
+    },
+    {
+      "name": "loudly crying face",
+      "code": "U+1F62D",
+      "char": "😭"
+    },
+    {
+      "name": "face with open mouth",
+      "code": "U+1F62E",
+      "char": "😮"
+    },
+    {
+      "name": "hushed face",
+      "code": "U+1F62F",
+      "char": "😯"
+    },
+    {
+      "name": "face with cold sweat",
+      "code": "U+1F630",
+      "char": "😰"
+    },
+    {
+      "name": "face screaming in fear",
+      "code": "U+1F631",
+      "char": "😱"
+    },
+    {
+      "name": "astonished face",
+      "code": "U+1F632",
+      "char": "😲"
+    },
+    {
+      "name": "flushed face",
+      "code": "U+1F633",
+      "char": "😳"
+    },
+    {
+      "name": "sleeping face",
+      "code": "U+1F634",
+      "char": "😴"
+    },
+    {
+      "name": "dizzy face",
+      "code": "U+1F635",
+      "char": "😵"
+    },
+    {
+      "name": "face without mouth",
+      "code": "U+1F636",
+      "char": "😶"
+    },
+    {
+      "name": "face with medical mask",
+      "code": "U+1F637",
+      "char": "😷"
+    },
+    {
+      "name": "grinning cat face smiling eyes",
+      "code": "U+1F638",
+      "char": "😸"
+    },
+    {
+      "name": "cat face tears of joy",
+      "code": "U+1F639",
+      "char": "😹"
+    },
+    {
+      "name": "smiling cat face",
+      "code": "U+1F63A",
+      "char": "😺"
+    },
+    {
+      "name": "smiling cat face heart eyes",
+      "code": "U+1F63B",
+      "char": "😻"
+    },
+    {
+      "name": "cat face wry smile",
+      "code": "U+1F63C",
+      "char": "😼"
+    },
+    {
+      "name": "kissing cat face closed eyes",
+      "code": "U+1F63D",
+      "char": "😽"
+    },
+    {
+      "name": "pouting cat face",
+      "code": "U+1F63E",
+      "char": "😾"
+    },
+    {
+      "name": "crying cat face",
+      "code": "U+1F63F",
+      "char": "😿"
+    },
+    {
+      "name": "weary cat face",
+      "code": "U+1F640",
+      "char": "🙀"
+    },
+    {
+      "name": "slightly frowning face",
+      "code": "U+1F641",
+      "char": "🙁"
+    },
+    {
+      "name": "slightly smiling face",
+      "code": "U+1F642",
+      "char": "🙂"
+    },
+    {
+      "name": "upside down face",
+      "code": "U+1F643",
+      "char": "🙃"
+    },
+    {
+      "name": "face with rolling eyes",
+      "code": "U+1F644",
+      "char": "🙄"
+    },
+    {
+      "name": "see-no-evil monkey",
+      "code": "U+1F648",
+      "char": "🙈"
+    },
+    {
+      "name": "hear-no-evil monkey",
+      "code": "U+1F649",
+      "char": "🙉"
+    },
+    {
+      "name": "speak-no-evil monkey",
+      "code": "U+1F64A",
+      "char": "🙊"
+    },
+    {
+      "name": "raising hands in celebration",
+      "code": "U+1F64C",
+      "char": "🙌"
+    }
+  ]
+}

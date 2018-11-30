@@ -27,6 +27,9 @@ public interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(MovieEntity... directors);
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insert(MovieEntity directors);
+
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void update(MovieEntity director);
 

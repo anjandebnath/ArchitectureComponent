@@ -1,11 +1,8 @@
 package com.anjan.architecturecomponent.ui.main;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -13,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.anjan.architecturecomponent.R;
-import com.anjan.architecturecomponent.entity.MovieEntity;
 import com.anjan.architecturecomponent.ui.add.AddActivity;
 
 public class MainActivity extends AppCompatActivity{
@@ -25,6 +21,7 @@ public class MainActivity extends AppCompatActivity{
     RecyclerView recyclerView;
     MoviesListAdapter moviesListAdapter;
     MoviesViewModel moviesViewModel;
+    LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity{
 
         floatingActionButton = findViewById(R.id.floatingActionButton4);
         recyclerView = findViewById(R.id.recyclerview);
-
+        mLayoutManager = new LinearLayoutManager(this);
 
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
         moviesListAdapter = new MoviesListAdapter(MainActivity.this);
@@ -42,15 +39,11 @@ public class MainActivity extends AppCompatActivity{
 
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLayoutManager.setReverseLayout(true);
+        recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(moviesListAdapter);
 
-        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
-            @Override
-            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
-                moviesListAdapter.submitList(movieEntities);
-            }
-        });
+        moviesViewModel.getMoviesList().observe(this, movieEntities -> moviesListAdapter.submitList(movieEntities));
 
 
 
