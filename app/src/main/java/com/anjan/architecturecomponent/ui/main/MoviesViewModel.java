@@ -9,7 +9,9 @@ import android.support.annotation.NonNull;
 
 
 import com.anjan.architecturecomponent.MoviesDatabase;
+import com.anjan.architecturecomponent.dao.DirectorDao;
 import com.anjan.architecturecomponent.dao.MovieDao;
+import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
 import java.util.List;
@@ -26,6 +28,7 @@ public class MoviesViewModel extends AndroidViewModel {
     private static final int PREFETCH_DISTANCE = 5;
 
     private MovieDao movieDao;
+    private DirectorDao directorDao;
     //private LiveData<List<MovieEntity>> moviesLiveData;
 
     private LiveData<PagedList<MovieEntity>> moviesLiveData;
@@ -33,7 +36,16 @@ public class MoviesViewModel extends AndroidViewModel {
     public MoviesViewModel(@NonNull Application application) {
         super(application);
         movieDao = MoviesDatabase.getDatabase(application).movieDao();
-        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), 20).build();
+        directorDao = MoviesDatabase.getDatabase(application).directorDao();
+        //moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), 20).build();
+        PagedList.Config pagedListConfig  =
+                (new PagedList.Config.Builder())
+                        .setEnablePlaceholders(true)
+                        .setPrefetchDistance(20)
+                        .setPageSize(20)
+                        .build();
+        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), pagedListConfig).build();
+
     }
 
     public LiveData<PagedList<MovieEntity>> getMoviesList() {
@@ -50,5 +62,23 @@ public class MoviesViewModel extends AndroidViewModel {
 
     public void deleteAll() {
         movieDao.deleteAll();
+    }
+
+    public int findDirector(String name){
+        DirectorEntity directorEntity =  null;
+        directorEntity =  directorDao.findDirectorByName(name);
+        if(directorEntity!= null){
+            return directorEntity.getId();
+        }else{
+            return -1;
+        }
+    }
+
+    public void insertMovie(MovieEntity... movies) {
+        movieDao.insert(movies);
+    }
+
+    public long insertDirector(DirectorEntity director){
+        return directorDao.insert(director);
     }
 }

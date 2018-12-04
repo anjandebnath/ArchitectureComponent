@@ -6,6 +6,7 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -31,9 +32,41 @@ public class MovieEntity {
     @ColumnInfo(name = "directorId")
     public int directorId;
 
-    public MovieEntity(@NonNull String movieName, int directorId) {
+    @ColumnInfo(name = "time")
+    public String time;
+
+    public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<MovieEntity>() {
+                @Override
+                public boolean areItemsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // User properties may have changed if reloaded from the DB, but ID is fixed
+                    return oldItem.getId() == newItem.getId();
+                }
+                @Override
+                public boolean areContentsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // NOTE: if you use equals, your object must properly override Object#equals()
+                    // Incorrectly returning false here will result in too many animations.
+                    return oldItem.equals(newItem);
+                }
+            };
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this)
+            return true;
+
+        MovieEntity movie = (MovieEntity) obj;
+
+        return movie.id == this.id && movie.movieName == this.movieName;
+    }
+
+
+    public MovieEntity(@NonNull String movieName, int directorId, String time) {
         this.movieName = movieName;
         this.directorId = directorId;
+        this.time = time;
     }
 
     public int getId() {
@@ -58,6 +91,14 @@ public class MovieEntity {
 
     public void setDirectorId(int directorId) {
         this.directorId = directorId;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
 

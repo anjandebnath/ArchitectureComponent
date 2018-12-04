@@ -36,6 +36,10 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                long milliSec = System.currentTimeMillis();
+                String time = Long.toString(milliSec);
+
+
                 String movie = editTextMovie.getEditableText().toString();
                 String director = editTextDirector.getEditableText().toString();
                 DirectorEntity directorEntity = new DirectorEntity(director);
@@ -45,7 +49,7 @@ public class AddActivity extends AppCompatActivity {
                 if( directorId < 0){
                     directorId = (int) addMoviesViewModel.insertDirector(directorEntity);
                 }
-                MovieEntity movieEntity = new MovieEntity(movie, directorId);
+                MovieEntity movieEntity = new MovieEntity(movie, directorId,time);
                 addMoviesViewModel.insertMovie(movieEntity);
 
 

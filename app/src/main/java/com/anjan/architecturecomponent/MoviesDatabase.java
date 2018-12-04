@@ -101,11 +101,14 @@ public abstract class MoviesDatabase extends RoomDatabase {
 
                 for (int i = 0; i < emoji.length(); i++) {
 
+                    long milliSec = System.currentTimeMillis();
+                    String time = Long.toString(milliSec);
+
                     JSONObject item = emoji.getJSONObject(i);
 
                     DirectorEntity director = new DirectorEntity(item.getString("code"));
 
-                    MovieEntity movie = new MovieEntity(item.getString("name"), (int) directorDao.insert(director));
+                    MovieEntity movie = new MovieEntity(item.getString("name"), (int) directorDao.insert(director), time);
                     movieDao.insert(movie);
 
                 }

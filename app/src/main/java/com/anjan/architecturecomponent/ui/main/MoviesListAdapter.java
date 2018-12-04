@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
+import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
+
 /**
  * Created by Anjan Debnath on 8/17/2018.
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
@@ -27,24 +29,11 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
         this.context = context;
     }
 
-    public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<MovieEntity>() {
-                @Override
-                public boolean areItemsTheSame(
-                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
-                    // User properties may have changed if reloaded from the DB, but ID is fixed
-                    return oldItem.getId() == newItem.getId();
-                }
-                @Override
-                public boolean areContentsTheSame(
-                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
-                    // NOTE: if you use equals, your object must properly override Object#equals()
-                    // Incorrectly returning false here will result in too many animations.
-                    return oldItem.equals(newItem);
-                }
-            };
 
-
+    @Override
+    public int getItemCount() {
+        return super.getItemCount();
+    }
 
     @Override
     public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

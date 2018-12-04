@@ -2,6 +2,7 @@ package com.anjan.architecturecomponent.dao;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.paging.DataSource;
+import android.arch.paging.LivePagedListProvider;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -39,6 +40,9 @@ public interface MovieDao {
    /* @Query("SELECT * FROM movie ORDER BY movieName ASC")
     LiveData<List<MovieEntity>> getAllMovies();*/
 
-    @Query("SELECT * FROM movie ORDER BY movieName ASC")
+    //@Query("SELECT * FROM movie ORDER BY movieName ASC")
+    @Query("SELECT * FROM movie ORDER BY time ASC")
     public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();
+
+
 }
