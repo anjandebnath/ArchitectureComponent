@@ -28,6 +28,7 @@ public class LayoutManagerWithSmoothScroller extends LinearLayoutManager {
         startSmoothScroll(smoothScroller);
     }
 
+
     private class TopSnappedSmoothScroller extends LinearSmoothScroller {
         public TopSnappedSmoothScroller(Context context) {
             super(context);

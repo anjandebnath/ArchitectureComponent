@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity{
             MovieEntity movieEntity = new MovieEntity(movie, directorId, time);
             moviesViewModel.insertMovie(movieEntity);
 
-            recyclerView.smoothScrollToPosition(moviesListAdapter.getItemCount());
+            //recyclerView.smoothScrollToPosition(moviesListAdapter.getItemCount());
 
 
         });
@@ -101,9 +101,11 @@ public class MainActivity extends AppCompatActivity{
             Log.e("Observer", "onChanged");
         }
 
+        // Scroll to bottom on new messages
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             Log.e("Observer", "onItemRangeInserted::"+ " positionStart :"+positionStart +":: itemCount : " +itemCount);
+            layoutManagerWithSmoothScroller.smoothScrollToPosition(recyclerView, null, moviesListAdapter.getItemCount());
         }
 
         @Override
