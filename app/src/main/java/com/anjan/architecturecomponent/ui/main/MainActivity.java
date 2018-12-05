@@ -9,6 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
@@ -26,6 +27,10 @@ public class MainActivity extends AppCompatActivity{
     MoviesViewModel moviesViewModel;
     //LinearLayoutManager mLayoutManager;
     LayoutManagerWithSmoothScroller layoutManagerWithSmoothScroller;
+
+    private boolean loading = true;
+    int pastVisiblesItems, visibleItemCount, totalItemCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +81,47 @@ public class MainActivity extends AppCompatActivity{
             MovieEntity movieEntity = new MovieEntity(movie, directorId, time);
             moviesViewModel.insertMovie(movieEntity);
 
-            recyclerView.smoothScrollToPosition(moviesListAdapter.getItemCount());
+            //recyclerView.smoothScrollToPosition(moviesListAdapter.getItemCount());
 
 
+        });
+
+
+        /*recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)) {
+
+
+                }
+            }
+        });*/
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                if(dy > 0) //check for scroll down
+                {
+                    visibleItemCount = layoutManagerWithSmoothScroller.getChildCount();
+                    totalItemCount = layoutManagerWithSmoothScroller.getItemCount();
+                    pastVisiblesItems = layoutManagerWithSmoothScroller.findFirstVisibleItemPosition();
+
+                    if (loading)
+                    {
+                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount)
+                        {
+                            loading = false;
+                            Log.v("...", "Last Item Wow !");
+                            //Do pagination.. i.e. fetch new data
+                            Toast.makeText(MainActivity.this, "Last", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
+            }
         });
 
     }
@@ -101,9 +144,11 @@ public class MainActivity extends AppCompatActivity{
             Log.e("Observer", "onChanged");
         }
 
+        // Scroll to bottom on new messages
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
             Log.e("Observer", "onItemRangeInserted::"+ " positionStart :"+positionStart +":: itemCount : " +itemCount);
+            layoutManagerWithSmoothScroller.smoothScrollToPosition(recyclerView, null, moviesListAdapter.getItemCount());
         }
 
         @Override

@@ -28,6 +28,7 @@ public class LayoutManagerWithSmoothScroller extends LinearLayoutManager {
         startSmoothScroll(smoothScroller);
     }
 
+
     private class TopSnappedSmoothScroller extends LinearSmoothScroller {
         public TopSnappedSmoothScroller(Context context) {
             super(context);
@@ -42,8 +43,7 @@ public class LayoutManagerWithSmoothScroller extends LinearLayoutManager {
 
         @Override
         protected int getVerticalSnapPreference() {
-            return SNAP_TO_END;
-            /*return SNAP_TO_START;*/
+            return SNAP_TO_START;
         }
     }
 }
