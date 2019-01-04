@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.anjan.architecturecomponent.ChatModelObject;
+import com.anjan.architecturecomponent.DateObject;
+import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
@@ -29,15 +32,26 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    void bindTo(MovieEntity movieEntity) {
+    void bindTo(ListObject movieEntity) {
 
-        itemView.setTag(movieEntity.id);
-        titleText.setText(movieEntity.movieName);
-        DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
+
+        if(movieEntity instanceof ChatModelObject){
+            ChatModelObject generalItem = (ChatModelObject) movieEntity;
+            itemView.setTag(generalItem.getMovieEntity());
+            titleText.setText(generalItem.getMovieEntity().movieName);
+        }else if(movieEntity instanceof DateObject){
+            DateObject dateObject = (DateObject) movieEntity;
+            itemView.setTag(dateObject.getDate());
+            titleText.setText(dateObject.getDate());
+        }
+
+
+
+       /* DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
 
         if (director != null) {
             directorText.setText(director.fullName);
-        }
+        }*/
 
 
     }

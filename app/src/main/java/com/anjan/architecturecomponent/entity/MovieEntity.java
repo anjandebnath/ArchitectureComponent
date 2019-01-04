@@ -8,6 +8,8 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 
+import com.anjan.architecturecomponent.ListObject;
+
 /**
  * Created by Anjan Debnath on 8/17/2018.
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
@@ -35,17 +37,17 @@ public class MovieEntity {
     @ColumnInfo(name = "time")
     public String time;
 
-    public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
-            new DiffUtil.ItemCallback<MovieEntity>() {
+    public static final DiffUtil.ItemCallback<ListObject> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<ListObject>() {
                 @Override
                 public boolean areItemsTheSame(
-                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                        @NonNull ListObject oldItem, @NonNull ListObject newItem) {
                     // User properties may have changed if reloaded from the DB, but ID is fixed
-                    return oldItem.getId() == newItem.getId();
+                    return oldItem.equals(newItem);
                 }
                 @Override
                 public boolean areContentsTheSame(
-                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                        @NonNull ListObject oldItem, @NonNull ListObject newItem) {
                     // NOTE: if you use equals, your object must properly override Object#equals()
                     // Incorrectly returning false here will result in too many animations.
                     return oldItem.equals(newItem);

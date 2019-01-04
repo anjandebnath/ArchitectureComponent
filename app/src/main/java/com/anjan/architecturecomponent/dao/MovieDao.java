@@ -41,8 +41,11 @@ public interface MovieDao {
     LiveData<List<MovieEntity>> getAllMovies();*/
 
     //@Query("SELECT * FROM movie ORDER BY movieName ASC")
+    //@Query("SELECT * FROM movie ORDER BY time ASC")
+    //public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();
+
     @Query("SELECT * FROM movie ORDER BY time ASC")
-    public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();
+    List<MovieEntity> getAllMovies();
 
 
 }

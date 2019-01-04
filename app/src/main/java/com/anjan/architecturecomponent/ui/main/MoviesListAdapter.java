@@ -9,8 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.anjan.architecturecomponent.ChatModelObject;
+import com.anjan.architecturecomponent.DateObject;
+import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
+
+import java.util.List;
 
 import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
 
@@ -19,9 +24,10 @@ import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
  */
 
-public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
+public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
     private Context context;
+
 
     public MoviesListAdapter(Context context) {
         super(DIFF_CALLBACK);
@@ -44,13 +50,12 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
 
-        final MovieEntity movie = getItem(position);
-        if (movie != null) {
-            holder.bindTo(movie);
-        } else {
-            holder.clear();
-        }
+        ListObject movieEntity = getItem(position);
+
+        holder.bindTo(getItem(position));
     }
+
+
 
 
 }

@@ -1,8 +1,12 @@
 package com.anjan.architecturecomponent.ui.main;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,10 +15,21 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.anjan.architecturecomponent.ChatModelObject;
+import com.anjan.architecturecomponent.DateObject;
+import com.anjan.architecturecomponent.DateParser;
+import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 import com.anjan.architecturecomponent.ui.add.AddActivity;
+
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -58,9 +73,19 @@ public class MainActivity extends AppCompatActivity{
 
         recyclerView.setAdapter(moviesListAdapter);
 
-        moviesViewModel.getMoviesList().observe(this, movieEntities -> moviesListAdapter.submitList(movieEntities));
 
+        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<ListObject>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<ListObject> model) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        moviesListAdapter.submitList(model);
+                    }
+                });
 
+            }
+        });
 
         floatingActionButton.setOnClickListener(v -> {
             /*Intent i = new Intent(MainActivity.this, AddActivity.class);
@@ -117,7 +142,7 @@ public class MainActivity extends AppCompatActivity{
                             loading = false;
                             Log.v("...", "Last Item Wow !");
                             //Do pagination.. i.e. fetch new data
-                            Toast.makeText(MainActivity.this, "Last", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(MainActivity.this, "Last", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -125,6 +150,8 @@ public class MainActivity extends AppCompatActivity{
         });
 
     }
+
+
 
     @Override
     protected void onResume() {

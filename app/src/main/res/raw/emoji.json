@@ -3,367 +3,440 @@
     {
       "name": "grinning face",
       "code": "U+1F600",
-      "char": "😀"
+      "char": "😀",
+      "chat_time": "2017-06-30 11:28:00"
     },
     {
       "name": "grinning face with smiling eyes",
       "code": "U+1F601",
-      "char": "😁"
+      "char": "😁",
+      "chat_time": "2017-06-30 11:29:00"
     },
     {
       "name": "face with tear of joy",
       "code": "U+1F602",
-      "char": "😂"
+      "char": "😂",
+      "chat_time": "2017-06-30 11:30:00"
     },
     {
       "name": "smiling face with open mouth",
       "code": "U+1F603",
-      "char": "😃"
+      "char": "😃",
+      "chat_time": "2017-06-30 11:31:00"
     },
     {
       "name": "smiling face and smiling eyes",
       "code": "U+1F604",
-      "char": "😄"
+      "char": "😄",
+      "chat_time": "2017-06-30 11:32:00"
     },
     {
       "name": "smiling face with cold sweat",
       "code": "U+1F605",
-      "char": "😅"
+      "char": "😅",
+      "chat_time": "2017-07-01 11:28:00"
     },
     {
       "name": "smiling face with tightly-closed eyes",
       "code": "U+1F606",
-      "char": "😆"
+      "char": "😆",
+      "chat_time": "2017-07-01 11:29:00"
     },
     {
       "name": "smiling face with halo",
       "code": "U+1F607",
-      "char": "😇"
+      "char": "😇",
+      "chat_time": "2017-07-01 11:30:00"
     },
     {
       "name": "smiling face with horns",
       "code": "U+1F608",
-      "char": "😈"
+      "char": "😈",
+      "chat_time": "2017-07-01 11:45:00"
     },
     {
       "name": "winking face",
       "code": "U+1F609",
-      "char": "😉"
+      "char": "😉",
+      "chat_time": "2017-07-05 11:28:00"
     },
     {
       "name": "smiling face with smiling eyes",
       "code": "U+1F60A",
-      "char": "😊"
+      "char": "😊",
+      "chat_time": "2017-07-05 11:29:00"
     },
     {
       "name": "face savouring delicious food",
       "code": "U+1F60B",
-      "char": "😋"
+      "char": "😋",
+      "chat_time": "2017-07-05 11:32:00"
     },
     {
       "name": "relieved face",
       "code": "U+1F60C",
-      "char": "😌"
+      "char": "😌",
+      "chat_time": "2017-07-05 11:40:00"
     },
     {
       "name": "smiling face heart shaped eyes",
       "code": "U+1F60D",
-      "char": "😍"
+      "char": "😍",
+      "chat_time": "2017-07-05 11:45:00"
     },
     {
       "name": "smiling face with sunglass",
       "code": "U+1F60E",
-      "char": "😎"
+      "char": "😎",
+      "chat_time": "2017-08-01 11:28:00"
     },
     {
       "name": "smirking face",
       "code": "U+1F60F",
-      "char": "😏"
+      "char": "😏",
+      "chat_time": "2017-08-01 11:55:00"
     },
     {
       "name": "neutral face",
       "code": "U+1F610",
-      "char": "😐"
+      "char": "😐",
+      "chat_time": "2017-08-01 11:55:00"
     },
     {
       "name": "expressionless face",
       "code": "U+1F611",
-      "char": "😑"
+      "char": "😑",
+      "chat_time": "2017-08-01 11:58:00"
     },
     {
       "name": "unamused face",
       "code": "U+1F612",
-      "char": "😒"
+      "char": "😒",
+      "chat_time": "2017-08-01 11:59:00"
     },
     {
       "name": "face with cold sweat",
       "code": "U+1F613",
-      "char": "😓"
+      "char": "😓",
+      "chat_time": "2017-08-04 11:55:00"
     },
     {
       "name": "pensive face",
       "code": "U+1F614",
-      "char": "😔"
+      "char": "😔",
+      "chat_time": "2017-08-04 12:15:00"
     },
     {
       "name": "confused face",
       "code": "U+1F615",
-      "char": "😕"
+      "char": "😕",
+      "chat_time": "2017-08-04 12:16:00"
     },
     {
       "name": "confounded face",
       "code": "U+1F616",
-      "char": "😖"
+      "char": "😖",
+      "chat_time": "2017-08-04 12:20:00"
     },
     {
       "name": "kissing face",
       "code": "U+1F617",
-      "char": "😗"
+      "char": "😗",
+      "chat_time": "2017-08-04 12:21:00"
     },
     {
       "name": "face throwing a kiss",
       "code": "U+1F618",
-      "char": "😘"
+      "char": "😘",
+      "chat_time": "2018-01-01 10:20:00"
     },
     {
       "name": "kissing face with smiling eyes",
       "code": "U+1F619",
-      "char": "😙"
+      "char": "😙",
+      "chat_time": "2018-01-01 10:21:00"
     },
     {
       "name": "kissing face with closed eyes",
       "code": "U+1F61A",
-      "char": "😚"
+      "char": "😚",
+      "chat_time": "2018-01-01 10:22:00"
     },
     {
       "name": "stuck out tongue",
       "code": "U+1F61B",
-      "char": "😛"
+      "char": "😛",
+      "chat_time": "2018-01-01 10:23:00"
     },
     {
       "name": "stuck out tongue and winking eye",
       "code": "U+1F61C",
-      "char": "😜"
+      "char": "😜",
+      "chat_time": "2018-01-01 10:24:00"
     },
     {
       "name": "stuck out tightly tongue closed eye",
       "code": "U+1F61D",
-      "char": "😝"
+      "char": "😝",
+      "chat_time": "2018-01-01 10:25:00"
     },
     {
       "name": "disappointed face",
       "code": "U+1F61E",
-      "char": "😞"
+      "char": "😞",
+      "chat_time": "2018-01-01 10:26:00"
     },
     {
       "name": "worried face",
       "code": "U+1F61F",
-      "char": "😟"
+      "char": "😟",
+      "chat_time": "2018-01-01 10:27:00"
     },
     {
       "name": "angry face",
       "code": "U+1F620",
-      "char": "😠"
+      "char": "😠",
+      "chat_time": "2018-01-01 10:28:00"
     },
     {
       "name": "pouting face",
       "code": "U+1F621",
-      "char": "😡"
+      "char": "😡",
+      "chat_time": "2018-01-01 10:29:00"
     },
     {
       "name": "crying face",
       "code": "U+1F622",
-      "char": "😢"
+      "char": "😢",
+      "chat_time": "2018-01-01 10:30:00"
     },
     {
       "name": "persevering face",
       "code": "U+1F623",
-      "char": "😣"
+      "char": "😣",
+      "chat_time": "2018-01-01 10:31:00"
     },
     {
       "name": "face with look of triumph",
       "code": "U+1F624",
-      "char": "😤"
+      "char": "😤",
+      "chat_time": "2018-01-04 07:00:00"
     },
     {
       "name": "disappointed but relieved face",
       "code": "U+1F625",
-      "char": "😥"
+      "char": "😥",
+      "chat_time": "2018-01-04 07:01:00"
     },
     {
       "name": "frowning face with open mouth",
       "code": "U+1F626",
-      "char": "😦"
+      "char": "😦",
+      "chat_time": "2018-01-04 07:02:00"
     },
     {
       "name": "anguished face",
       "code": "U+1F627",
-      "char": "😧"
+      "char": "😧",
+      "chat_time": "2018-01-04 07:03:00"
     },
     {
       "name": "fearful face",
       "code": "U+1F628",
-      "char": "😨"
+      "char": "😨",
+      "chat_time": "2018-01-04 07:04:00"
     },
     {
       "name": "weary face",
       "code": "U+1F629",
-      "char": "😩"
+      "char": "😩",
+      "chat_time": "2018-01-04 07:05:00"
     },
     {
       "name": "sleepy face",
       "code": "U+1F62A",
-      "char": "😪"
+      "char": "😪",
+      "chat_time": "2018-01-04 07:06:00"
     },
     {
       "name": "tired face",
       "code": "U+1F62B",
-      "char": "😫"
+      "char": "😫",
+      "chat_time": "2018-01-04 07:07:00"
     },
     {
       "name": "grimacing face",
       "code": "U+1F62C",
-      "char": "😬"
+      "char": "😬",
+      "chat_time": "2018-01-04 07:08:00"
     },
     {
       "name": "loudly crying face",
       "code": "U+1F62D",
-      "char": "😭"
+      "char": "😭",
+      "chat_time": "2018-01-04 07:09:00"
     },
     {
       "name": "face with open mouth",
       "code": "U+1F62E",
-      "char": "😮"
+      "char": "😮",
+      "chat_time": "2018-01-04 07:10:00"
     },
     {
       "name": "hushed face",
       "code": "U+1F62F",
-      "char": "😯"
+      "char": "😯",
+      "chat_time": "2018-01-04 07:11:00"
     },
     {
       "name": "face with cold sweat",
       "code": "U+1F630",
-      "char": "😰"
+      "char": "😰",
+      "chat_time": "2018-01-04 07:12:00"
     },
     {
       "name": "face screaming in fear",
       "code": "U+1F631",
-      "char": "😱"
+      "char": "😱",
+      "chat_time": "2018-01-04 07:15:00"
     },
     {
       "name": "astonished face",
       "code": "U+1F632",
-      "char": "😲"
+      "char": "😲",
+      "chat_time": "2018-01-10 02:00:00"
     },
     {
       "name": "flushed face",
       "code": "U+1F633",
-      "char": "😳"
+      "char": "😳",
+      "chat_time": "2018-01-10 02:01:00"
     },
     {
       "name": "sleeping face",
       "code": "U+1F634",
-      "char": "😴"
+      "char": "😴",
+      "chat_time": "2018-01-10 02:02:00"
     },
     {
       "name": "dizzy face",
       "code": "U+1F635",
-      "char": "😵"
+      "char": "😵",
+      "chat_time": "2018-01-10 02:03:00"
     },
     {
       "name": "face without mouth",
       "code": "U+1F636",
-      "char": "😶"
+      "char": "😶",
+      "chat_time": "2018-01-10 02:04:00"
     },
     {
       "name": "face with medical mask",
       "code": "U+1F637",
-      "char": "😷"
+      "char": "😷",
+      "chat_time": "2018-01-10 02:05:00"
     },
     {
       "name": "grinning cat face smiling eyes",
       "code": "U+1F638",
-      "char": "😸"
+      "char": "😸",
+      "chat_time": "2018-01-10 02:06:00"
     },
     {
       "name": "cat face tears of joy",
       "code": "U+1F639",
-      "char": "😹"
+      "char": "😹",
+      "chat_time": "2018-01-10 02:07:00"
     },
     {
       "name": "smiling cat face",
       "code": "U+1F63A",
-      "char": "😺"
+      "char": "😺",
+      "chat_time": "2018-01-10 02:08:00"
     },
     {
       "name": "smiling cat face heart eyes",
       "code": "U+1F63B",
-      "char": "😻"
+      "char": "😻",
+      "chat_time": "2018-01-11 12:00:00"
     },
     {
       "name": "cat face wry smile",
       "code": "U+1F63C",
-      "char": "😼"
+      "char": "😼",
+      "chat_time": "2018-01-11 12:01:00"
     },
     {
       "name": "kissing cat face closed eyes",
       "code": "U+1F63D",
-      "char": "😽"
+      "char": "😽",
+      "chat_time": "2018-01-11 12:02:00"
     },
     {
       "name": "pouting cat face",
       "code": "U+1F63E",
-      "char": "😾"
+      "char": "😾",
+      "chat_time": "2018-01-11 12:03:00"
     },
     {
       "name": "crying cat face",
       "code": "U+1F63F",
-      "char": "😿"
+      "char": "😿",
+      "chat_time": "2018-01-11 12:04:00"
     },
     {
       "name": "weary cat face",
       "code": "U+1F640",
-      "char": "🙀"
+      "char": "🙀",
+      "chat_time": "2018-01-11 12:05:00"
     },
     {
       "name": "slightly frowning face",
       "code": "U+1F641",
-      "char": "🙁"
+      "char": "🙁",
+      "chat_time": "2018-01-15 10:06:00"
     },
     {
       "name": "slightly smiling face",
       "code": "U+1F642",
-      "char": "🙂"
+      "char": "🙂",
+      "chat_time": "2018-01-15 10:07:00"
     },
     {
       "name": "upside down face",
       "code": "U+1F643",
-      "char": "🙃"
+      "char": "🙃",
+      "chat_time": "2018-01-15 10:07:00"
     },
     {
       "name": "face with rolling eyes",
       "code": "U+1F644",
-      "char": "🙄"
+      "char": "🙄",
+      "chat_time": "2018-01-15 10:08:00"
     },
     {
       "name": "see-no-evil monkey",
       "code": "U+1F648",
-      "char": "🙈"
+      "char": "🙈",
+      "chat_time": "2018-01-15 10:09:00"
     },
     {
       "name": "hear-no-evil monkey",
       "code": "U+1F649",
-      "char": "🙉"
+      "char": "🙉",
+      "chat_time": "2018-01-15 10:10:00"
     },
     {
       "name": "speak-no-evil monkey",
       "code": "U+1F64A",
-      "char": "🙊"
+      "char": "🙊",
+      "chat_time": "2018-01-15 10:11:00"
     },
     {
       "name": "raising hands in celebration",
       "code": "U+1F64C",
-      "char": "🙌"
+      "char": "🙌",
+      "chat_time": "2018-01-15 10:15:00"
     }
   ]
 }
