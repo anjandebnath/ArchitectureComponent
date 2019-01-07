@@ -32,6 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -49,7 +50,7 @@ public class MoviesViewModel extends AndroidViewModel {
     private DirectorDao directorDao;
 
 
-    //private LiveData<PagedList<MovieEntity>> moviesLiveData;
+    private LiveData<PagedList<MovieEntity>> moviesLiveData;
     private MutableLiveData<PagedList<ListObject>> mutableMovieList;
 
     public MoviesViewModel(@NonNull Application application) {
@@ -58,29 +59,35 @@ public class MoviesViewModel extends AndroidViewModel {
         directorDao = MoviesDatabase.getDatabase(application).directorDao();
 
 
-       /*PagedList.Config pagedListConfig  =
-                (new PagedList.Config.Builder())
-                        .setEnablePlaceholders(true)
-                        .setPrefetchDistance(20)
-                        .setPageSize(20)
-                        .build();*/
 
-        //moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), pagedListConfig).build();
+
+
+
+
         mutableMovieList = new MutableLiveData<>();
 
     }
 
-    public LiveData<PagedList<ListObject>> getMoviesList() {
+    public LiveData<PagedList<MovieEntity>> getMovieEntityList(){
+        PagedList.Config pagedListConfig  =
+                (new PagedList.Config.Builder())
+                        .setEnablePlaceholders(true)
+                        .setPrefetchDistance(10)
+                        .setPageSize(10)
+                        .build();
+        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), pagedListConfig).build();
+        return moviesLiveData;
+    }
+
+    public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
 
         PagedList.Config myConfig = new PagedList.Config.Builder()
-                .setEnablePlaceholders(false)
-                .setPrefetchDistance(PAGE_SIZE)
-                .setPageSize(PAGE_SIZE)
+                .setEnablePlaceholders(true)
+                .setPrefetchDistance(5)
+                .setPageSize(5)
                 .build();
 
-        List<ListObject> myList = groupDataIntoHashMap(movieDao.getAllMovies());
-        /*StringListProvider provider = new StringListProvider(myList);
-        StringDataSource dataSource = new StringDataSource(provider);*/
+        List<ListObject> myList = groupDataIntoHashMap(movieEntityList);
 
         MovieListDataSource movieListDataSource = new MovieListDataSource(myList);
 
@@ -93,6 +100,8 @@ public class MoviesViewModel extends AndroidViewModel {
 
         mutableMovieList.setValue(pagedStrings);
         return mutableMovieList;
+
+
     }
 
 
@@ -103,18 +112,23 @@ public class MoviesViewModel extends AndroidViewModel {
 
         for (MovieEntity movieEntity : movieEntities) {
 
-            String hashMapKey = movieEntity.getTime();
+            //if(movieEntity!= null){
 
-            if (groupedHashMap.containsKey(hashMapKey)) {
-                // The key is already in the HashMap; add the pojo object
-                // against the existing key.
-                groupedHashMap.get(hashMapKey).add(movieEntity);
-            } else {
-                // The key is not there in the HashMap; create a new key-value pair
-                movieEntitySet = new LinkedHashSet<>();
-                movieEntitySet.add(movieEntity);
-                groupedHashMap.put(hashMapKey, movieEntitySet);
-            }
+                String hashMapKey = movieEntity.getTime();
+
+                if (groupedHashMap.containsKey(hashMapKey)) {
+                    // The key is already in the HashMap; add the pojo object
+                    // against the existing key.
+                    groupedHashMap.get(hashMapKey).add(movieEntity);
+                } else {
+                    // The key is not there in the HashMap; create a new key-value pair
+                    movieEntitySet = new LinkedHashSet<>();
+                    movieEntitySet.add(movieEntity);
+                    groupedHashMap.put(hashMapKey, movieEntitySet);
+                }
+            //}
+
+
         }
 
         //Generate list from map

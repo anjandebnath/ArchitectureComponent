@@ -32,10 +32,10 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    void bindTo(ListObject movieEntity) {
+    void bindTo(MovieEntity movieEntity) {
 
 
-        if(movieEntity instanceof ChatModelObject){
+        /*if(movieEntity instanceof ChatModelObject){
             ChatModelObject generalItem = (ChatModelObject) movieEntity;
             itemView.setTag(generalItem.getMovieEntity());
             titleText.setText(generalItem.getMovieEntity().movieName);
@@ -44,14 +44,16 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
             itemView.setTag(dateObject.getDate());
             titleText.setText(dateObject.getDate());
         }
+*/
 
 
-
-       /* DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
+        itemView.setTag(movieEntity.id);
+        titleText.setText(movieEntity.movieName);
+        DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
 
         if (director != null) {
             directorText.setText(director.fullName);
-        }*/
+        }
 
 
     }

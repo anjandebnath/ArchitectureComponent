@@ -46,8 +46,6 @@ public abstract class MoviesDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             MoviesDatabase.class, DB_NAME)
-
-                            .allowMainThreadQueries() // SHOULD NOT BE USED IN PRODUCTION !!!
                             .addCallback(new RoomDatabase.Callback() {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {

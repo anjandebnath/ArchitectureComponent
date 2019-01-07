@@ -38,13 +38,15 @@ public class MainActivity extends AppCompatActivity{
 
 
     RecyclerView recyclerView;
-    MoviesListAdapter moviesListAdapter;
+    MoviesListAdapterNew moviesListAdapter;
     MoviesViewModel moviesViewModel;
     //LinearLayoutManager mLayoutManager;
     LayoutManagerWithSmoothScroller layoutManagerWithSmoothScroller;
 
     private boolean loading = true;
     int pastVisiblesItems, visibleItemCount, totalItemCount;
+
+    List<MovieEntity> movies;
 
 
     @Override
@@ -58,7 +60,7 @@ public class MainActivity extends AppCompatActivity{
 
 
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
-        moviesListAdapter = new MoviesListAdapter(MainActivity.this);
+        moviesListAdapter = new MoviesListAdapterNew(MainActivity.this);
         moviesListAdapter.registerAdapterDataObserver(new AdapterDataSetObserver());
 
         //recyclerView.setHasFixedSize(true);
@@ -74,18 +76,32 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setAdapter(moviesListAdapter);
 
 
-        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<ListObject>>() {
+        moviesViewModel.getMovieEntityList().observe(this, new Observer<PagedList<MovieEntity>>() {
             @Override
-            public void onChanged(@Nullable PagedList<ListObject> model) {
-                runOnUiThread(new Runnable() {
+            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
+
+                moviesListAdapter.submitList(movieEntities);
+
+                /*movies = movieEntities.snapshot();
+
+                moviesViewModel.getMoviesList(movies).observe(MainActivity.this, new Observer<PagedList<ListObject>>() {
                     @Override
-                    public void run() {
-                        moviesListAdapter.submitList(model);
+                    public void onChanged(@Nullable PagedList<ListObject> model) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                moviesListAdapter.submitList(model);
+                            }
+                        });
+
                     }
-                });
+                });*/
 
             }
         });
+
+
+
 
         floatingActionButton.setOnClickListener(v -> {
             /*Intent i = new Intent(MainActivity.this, AddActivity.class);

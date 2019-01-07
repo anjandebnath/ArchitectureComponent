@@ -1,6 +1,5 @@
 package com.anjan.architecturecomponent.ui.main;
 
-import android.arch.paging.PagedList;
 import android.arch.paging.PagedListAdapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,13 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.anjan.architecturecomponent.ChatModelObject;
-import com.anjan.architecturecomponent.DateObject;
 import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-
-import java.util.List;
 
 import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
 
@@ -24,12 +19,29 @@ import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
  */
 
-public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHolder> {
+public class MoviesListAdapterNew extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
     private Context context;
 
+    public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<MovieEntity>() {
+                @Override
+                public boolean areItemsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // User properties may have changed if reloaded from the DB, but ID is fixed
+                    return oldItem.id == newItem.id;
+                }
+                @Override
+                public boolean areContentsTheSame(
+                        @NonNull MovieEntity oldItem, @NonNull MovieEntity newItem) {
+                    // NOTE: if you use equals, your object must properly override Object#equals()
+                    // Incorrectly returning false here will result in too many animations.
+                    return oldItem.equals(newItem);
+                }
+            };
 
-    public MoviesListAdapter(Context context) {
+
+    public MoviesListAdapterNew(Context context) {
         super(DIFF_CALLBACK);
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
@@ -50,9 +62,9 @@ public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHo
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
 
-        ListObject movieEntity = getItem(position);
+        MovieEntity movieEntity = getItem(position);
 
-        //holder.bindTo(getItem(position));
+        holder.bindTo(getItem(position));
     }
 
 
