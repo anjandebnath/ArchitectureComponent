@@ -10,6 +10,8 @@ import android.support.v7.util.DiffUtil;
 
 import com.anjan.architecturecomponent.ListObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Anjan Debnath on 8/17/2018.
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
@@ -21,7 +23,7 @@ import com.anjan.architecturecomponent.ListObject;
                  childColumns = "directorId",
                  onDelete = ForeignKey.CASCADE),
          indices = {@Index("movieName"), @Index("directorId")})
-public class MovieEntity {
+public class MovieEntity implements Serializable {
 
 
     @PrimaryKey(autoGenerate = true)

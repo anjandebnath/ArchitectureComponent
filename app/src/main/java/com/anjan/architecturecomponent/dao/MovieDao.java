@@ -37,7 +37,7 @@ public interface MovieDao {
     @Query("DELETE FROM movie")
     void deleteAll();
 
-   /* @Query("SELECT * FROM movie ORDER BY movieName ASC")
+    /*@Query("SELECT * FROM movie ORDER BY time ASC")
     LiveData<List<MovieEntity>> getAllMovies();*/
 
 

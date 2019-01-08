@@ -7,6 +7,8 @@ import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 /**
  * Created by Anjan Debnath on 8/17/2018.
  * Copyright (c) 2018, W3 Engineers Ltd. All rights reserved.
@@ -14,7 +16,7 @@ import android.support.annotation.NonNull;
 
 @Entity(tableName = "director",
          indices = {@Index(value = "full_name", unique = true)})
-public class DirectorEntity {
+public class DirectorEntity implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "dirID")

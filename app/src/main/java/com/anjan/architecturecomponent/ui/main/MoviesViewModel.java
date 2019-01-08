@@ -22,6 +22,7 @@ import com.anjan.architecturecomponent.pager.MainThreadExecutor;
 import com.anjan.architecturecomponent.pager.MovieListDataSource;
 import com.anjan.architecturecomponent.pager.StringDataSource;
 import com.anjan.architecturecomponent.pager.StringListProvider;
+import com.anjan.architecturecomponent.repository.DataRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,38 +49,44 @@ public class MoviesViewModel extends AndroidViewModel {
 
     private MovieDao movieDao;
     private DirectorDao directorDao;
+    DataRepository dataRepository;
 
 
     private LiveData<PagedList<MovieEntity>> moviesLiveData;
-    private MutableLiveData<PagedList<ListObject>> mutableMovieList;
+   // private MutableLiveData<PagedList<ListObject>> mutableMovieList;
 
     public MoviesViewModel(@NonNull Application application) {
         super(application);
         movieDao = MoviesDatabase.getDatabase(application).movieDao();
         directorDao = MoviesDatabase.getDatabase(application).directorDao();
 
+        dataRepository = DataRepository.getInstance(application);
+
+        PagedList.Config pagedListConfig  =
+                (new PagedList.Config.Builder())
+                        .setEnablePlaceholders(true)
+                        .setPrefetchDistance(2)
+                        .setPageSize(5)
+                        .build();
+
+        moviesLiveData = new LivePagedListBuilder<>(dataRepository.getAllMovies(), pagedListConfig).build();
 
 
 
-
-
-
-        mutableMovieList = new MutableLiveData<>();
+        //mutableMovieList = new MutableLiveData<>();
 
     }
 
     public LiveData<PagedList<MovieEntity>> getMovieEntityList(){
-        PagedList.Config pagedListConfig  =
-                (new PagedList.Config.Builder())
-                        .setEnablePlaceholders(true)
-                        .setPrefetchDistance(10)
-                        .setPageSize(10)
-                        .build();
-        moviesLiveData = new LivePagedListBuilder<>(movieDao.getAllMovies(), pagedListConfig).build();
+
         return moviesLiveData;
     }
 
-    public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
+    public DirectorEntity findDirector(int id){
+       return dataRepository.findDirectorById(id);
+    }
+
+    /*public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
 
         PagedList.Config myConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
@@ -102,10 +109,10 @@ public class MoviesViewModel extends AndroidViewModel {
         return mutableMovieList;
 
 
-    }
+    }*/
 
 
-    private List<ListObject> groupDataIntoHashMap(List<MovieEntity> movieEntities) {
+    /*private List<ListObject> groupDataIntoHashMap(List<MovieEntity> movieEntities) {
 
         LinkedHashMap<String, Set<MovieEntity>> groupedHashMap = new LinkedHashMap<>();
         Set<MovieEntity> movieEntitySet = null;
@@ -134,10 +141,10 @@ public class MoviesViewModel extends AndroidViewModel {
         //Generate list from map
         return generateListFromMap(groupedHashMap);
 
-    }
+    }*/
 
 
-    private List<ListObject> generateListFromMap(LinkedHashMap<String, Set<MovieEntity>> groupedHashMap) {
+   /* private List<ListObject> generateListFromMap(LinkedHashMap<String, Set<MovieEntity>> groupedHashMap) {
         // We linearly add every item into the consolidatedList.
         Date date1 = null; Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //For declaring values in new date objects. use same date format when creating dates
@@ -179,10 +186,10 @@ public class MoviesViewModel extends AndroidViewModel {
         }
 
         return consolidatedList;
-    }
+    }*/
 
 
-    public boolean isSameDay(Date date1, Date date2){
+   /* public boolean isSameDay(Date date1, Date date2){
 
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
@@ -192,7 +199,7 @@ public class MoviesViewModel extends AndroidViewModel {
                 cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
 
         return sameDay;
-    }
+    }*/
 
 
     public void insert(MovieEntity... movies) {

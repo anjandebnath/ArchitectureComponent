@@ -22,6 +22,7 @@ import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
 public class MoviesListAdapterNew extends PagedListAdapter<MovieEntity, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
     private Context context;
+    MoviesViewModel moviesViewModel;
 
     public static final DiffUtil.ItemCallback<MovieEntity> DIFF_CALLBACK =
             new DiffUtil.ItemCallback<MovieEntity>() {
@@ -41,10 +42,11 @@ public class MoviesListAdapterNew extends PagedListAdapter<MovieEntity, MoviesVi
             };
 
 
-    public MoviesListAdapterNew(Context context) {
+    public MoviesListAdapterNew(Context context, MoviesViewModel moviesViewModel) {
         super(DIFF_CALLBACK);
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
+        this.moviesViewModel = moviesViewModel;
     }
 
 
@@ -62,9 +64,7 @@ public class MoviesListAdapterNew extends PagedListAdapter<MovieEntity, MoviesVi
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
 
-        MovieEntity movieEntity = getItem(position);
-
-        holder.bindTo(getItem(position));
+        holder.bindTo(getItem(position), moviesViewModel);
     }
 
 

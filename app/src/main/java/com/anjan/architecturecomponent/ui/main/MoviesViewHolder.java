@@ -13,6 +13,7 @@ import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
+import com.anjan.architecturecomponent.repository.DataRepository;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -26,13 +27,16 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
     MoviesViewHolder(View itemView, Context context) {
         super(itemView);
+
+
         mContext = context;
         titleText = (TextView) itemView.findViewById(R.id.tvMovieTitle);
         directorText = (TextView) itemView.findViewById(R.id.tvMovieDirectorFullName);
 
+
     }
 
-    void bindTo(MovieEntity movieEntity) {
+    void bindTo(MovieEntity movieEntity, MoviesViewModel moviesViewModel) {
 
 
         /*if(movieEntity instanceof ChatModelObject){
@@ -49,7 +53,7 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
         itemView.setTag(movieEntity.id);
         titleText.setText(movieEntity.movieName);
-        DirectorEntity director = MoviesDatabase.getDatabase(mContext).directorDao().findDirectorById(movieEntity.directorId);
+        DirectorEntity director = moviesViewModel.findDirector(movieEntity.directorId);
 
         if (director != null) {
             directorText.setText(director.fullName);
