@@ -36,20 +36,8 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    void bindTo(MovieEntity movieEntity, MoviesViewModel moviesViewModel) {
-
-
-        /*if(movieEntity instanceof ChatModelObject){
-            ChatModelObject generalItem = (ChatModelObject) movieEntity;
-            itemView.setTag(generalItem.getMovieEntity());
-            titleText.setText(generalItem.getMovieEntity().movieName);
-        }else if(movieEntity instanceof DateObject){
-            DateObject dateObject = (DateObject) movieEntity;
-            itemView.setTag(dateObject.getDate());
-            titleText.setText(dateObject.getDate());
-        }
-*/
-
+    // for MoviesListAdapterNew
+    void bindTo(MovieEntity movieEntity, MoviesViewModel moviesViewModel){
 
         itemView.setTag(movieEntity.id);
         titleText.setText(movieEntity.movieName);
@@ -59,7 +47,20 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
             directorText.setText(director.fullName);
         }
 
+    }
 
+    // for MoviesListAdapterNew
+    void bindTo(ListObject listObject) {
+
+        if(listObject instanceof ChatModelObject){
+            ChatModelObject generalItem = (ChatModelObject) listObject;
+            itemView.setTag(generalItem.getMovieEntity());
+            titleText.setText(generalItem.getMovieEntity().movieName);
+        }else if(listObject instanceof DateObject){
+            DateObject dateObject = (DateObject) listObject;
+            itemView.setTag(dateObject.getDate());
+            titleText.setText(dateObject.getDate());
+        }
     }
 
     void clear() {

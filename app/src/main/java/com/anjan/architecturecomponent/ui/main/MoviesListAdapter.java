@@ -50,9 +50,19 @@ public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHo
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
 
-        ListObject movieEntity = getItem(position);
+        ListObject listObject = getItem(position);
 
-        //holder.bindTo(getItem(position));
+        if (listObject != null) {
+            holder.bindTo(listObject);
+        } else {
+
+            // By debugging I found that while reading data in view model via Dao, it is returning list of size 25.
+            // But only first 9 of these are non null. All other entries in the list is null
+            // I am expecting the null data will refresh soon as this is a paged list.
+            // But the problem is the null are never getting refreshed with valid data.
+
+            holder.clear();  // we need to use this otherwise recyclerview will be crushed
+        }
     }
 
 

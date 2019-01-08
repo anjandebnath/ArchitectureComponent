@@ -5,6 +5,7 @@ import android.arch.core.executor.TaskExecutor;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
+import android.arch.paging.DataSource;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
@@ -44,7 +45,7 @@ import java.util.concurrent.Executors;
 public class MoviesViewModel extends AndroidViewModel {
 
     private static final int INITIAL_LOAD_KEY = 0;
-    private static final int PAGE_SIZE = 20;
+    private static final int PAGE_SIZE = 10;
     private static final int PREFETCH_DISTANCE = 5;
 
     private MovieDao movieDao;
@@ -53,7 +54,10 @@ public class MoviesViewModel extends AndroidViewModel {
 
 
     private LiveData<PagedList<MovieEntity>> moviesLiveData;
-   // private MutableLiveData<PagedList<ListObject>> mutableMovieList;
+    private MutableLiveData<PagedList<ListObject>> mutableMovieList;
+
+
+    private LiveData<PagedList<ListObject>> listObjLiveData;
 
     public MoviesViewModel(@NonNull Application application) {
         super(application);
@@ -65,33 +69,62 @@ public class MoviesViewModel extends AndroidViewModel {
         PagedList.Config pagedListConfig  =
                 (new PagedList.Config.Builder())
                         .setEnablePlaceholders(true)
-                        .setPrefetchDistance(2)
-                        .setPageSize(5)
+                        .setPrefetchDistance(PREFETCH_DISTANCE)
+                        .setPageSize(PAGE_SIZE)
                         .build();
 
         moviesLiveData = new LivePagedListBuilder<>(dataRepository.getAllMovies(), pagedListConfig).build();
 
+        mutableMovieList = new MutableLiveData<>();
 
+        /*DataSource.Factory<Integer, MovieEntity> dataSourceMovieList = dataRepository.getAllMovies();
 
-        //mutableMovieList = new MutableLiveData<>();
+        DataSource.Factory<Integer, ListObject> integerObjectFactory = dataSourceMovieList.mapByPage(input -> {
+
+            LinkedHashMap<String, Set<MovieEntity>> groupedHashMap = new LinkedHashMap<>();
+            Set<MovieEntity> movieEntitySet = null;
+
+            for (int i = 0; i < input.size(); i++) {
+
+                MovieEntity movieEntity = input.get(i);
+
+                if(movieEntity!= null){
+
+                    String hashMapKey = movieEntity.getTime();
+
+                    if (groupedHashMap.containsKey(hashMapKey)) {
+                        // The key is already in the HashMap; add the pojo object
+                        // against the existing key.
+                        groupedHashMap.get(hashMapKey).add(movieEntity);
+                    } else {
+                        // The key is not there in the HashMap; create a new key-value pair
+                        movieEntitySet = new LinkedHashSet<>();
+                        movieEntitySet.add(movieEntity);
+                        groupedHashMap.put(hashMapKey, movieEntitySet);
+                    }
+                }
+            }
+            return generateListFromMap(groupedHashMap);
+        });
+
+        listObjLiveData = new LivePagedListBuilder<>(integerObjectFactory, PAGE_SIZE).build();*/
 
     }
 
-    public LiveData<PagedList<MovieEntity>> getMovieEntityList(){
 
+
+    public LiveData<PagedList<MovieEntity>> getMovieEntityList(){
         return moviesLiveData;
     }
 
-    public DirectorEntity findDirector(int id){
-       return dataRepository.findDirectorById(id);
-    }
 
-    /*public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
+
+    public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
 
         PagedList.Config myConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
-                .setPrefetchDistance(5)
-                .setPageSize(5)
+                .setPrefetchDistance(PREFETCH_DISTANCE)
+                .setPageSize(PAGE_SIZE)
                 .build();
 
         List<ListObject> myList = groupDataIntoHashMap(movieEntityList);
@@ -99,27 +132,29 @@ public class MoviesViewModel extends AndroidViewModel {
         MovieListDataSource movieListDataSource = new MovieListDataSource(myList);
 
         PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
-                .setInitialKey(0)
+                .setInitialKey(INITIAL_LOAD_KEY)
                 .setNotifyExecutor(new MainThreadExecutor()) //The executor defining where page loading updates are dispatched.
                 .setFetchExecutor(Executors.newSingleThreadExecutor())
                 .build();
+
+        //pagedStrings.loadAround(myList.size() -1);
 
 
         mutableMovieList.setValue(pagedStrings);
         return mutableMovieList;
 
 
-    }*/
+    }
 
 
-    /*private List<ListObject> groupDataIntoHashMap(List<MovieEntity> movieEntities) {
+    private List<ListObject> groupDataIntoHashMap(List<MovieEntity> movieEntities) {
 
         LinkedHashMap<String, Set<MovieEntity>> groupedHashMap = new LinkedHashMap<>();
         Set<MovieEntity> movieEntitySet = null;
 
         for (MovieEntity movieEntity : movieEntities) {
 
-            //if(movieEntity!= null){
+            if(movieEntity!= null){
 
                 String hashMapKey = movieEntity.getTime();
 
@@ -133,7 +168,7 @@ public class MoviesViewModel extends AndroidViewModel {
                     movieEntitySet.add(movieEntity);
                     groupedHashMap.put(hashMapKey, movieEntitySet);
                 }
-            //}
+            }
 
 
         }
@@ -141,10 +176,10 @@ public class MoviesViewModel extends AndroidViewModel {
         //Generate list from map
         return generateListFromMap(groupedHashMap);
 
-    }*/
+    }
 
 
-   /* private List<ListObject> generateListFromMap(LinkedHashMap<String, Set<MovieEntity>> groupedHashMap) {
+    private List<ListObject> generateListFromMap(LinkedHashMap<String, Set<MovieEntity>> groupedHashMap) {
         // We linearly add every item into the consolidatedList.
         Date date1 = null; Date date2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //For declaring values in new date objects. use same date format when creating dates
@@ -186,10 +221,10 @@ public class MoviesViewModel extends AndroidViewModel {
         }
 
         return consolidatedList;
-    }*/
+    }
 
 
-   /* public boolean isSameDay(Date date1, Date date2){
+    public boolean isSameDay(Date date1, Date date2){
 
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
@@ -199,8 +234,11 @@ public class MoviesViewModel extends AndroidViewModel {
                 cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
 
         return sameDay;
-    }*/
+    }
 
+    public DirectorEntity findDirector(int id){
+        return dataRepository.findDirectorById(id);
+    }
 
     public void insert(MovieEntity... movies) {
         movieDao.insert(movies);

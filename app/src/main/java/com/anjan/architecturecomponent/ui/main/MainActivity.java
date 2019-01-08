@@ -2,6 +2,7 @@ package com.anjan.architecturecomponent.ui.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +11,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity{
 
 
     RecyclerView recyclerView;
-    MoviesListAdapterNew moviesListAdapter;
+    MoviesListAdapterNew moviesListAdapterNew;
+    MoviesListAdapter moviesListAdapter;
     MoviesViewModel moviesViewModel;
     //LinearLayoutManager mLayoutManager;
     LayoutManagerWithSmoothScroller layoutManagerWithSmoothScroller;
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity{
 
 
         moviesViewModel = ViewModelProviders.of(this).get(MoviesViewModel.class);
-        moviesListAdapter = new MoviesListAdapterNew(MainActivity.this, moviesViewModel);
+
+       /* moviesListAdapterNew = new MoviesListAdapterNew(MainActivity.this, moviesViewModel);
+        moviesListAdapterNew.registerAdapterDataObserver(new AdapterDataSetObserver());*/
+
+        moviesListAdapter = new MoviesListAdapter(MainActivity.this);
         moviesListAdapter.registerAdapterDataObserver(new AdapterDataSetObserver());
 
         //recyclerView.setHasFixedSize(true);
@@ -58,17 +65,16 @@ public class MainActivity extends AppCompatActivity{
 
 
 
+        //recyclerView.setAdapter(moviesListAdapterNew);
         recyclerView.setAdapter(moviesListAdapter);
 
 
 
-        moviesViewModel.getMovieEntityList().observe(this, movieEntities -> moviesListAdapter.submitList(movieEntities));
+        //moviesViewModel.getMovieEntityList().observe(this, movieEntities -> moviesListAdapterNew.submitList(movieEntities));
 
-        /*moviesViewModel.getMovieEntityList().observe(this, movieEntities -> {
+        moviesViewModel.getMovieEntityList().observe(this, movieEntities -> {
 
-            moviesListAdapter.submitList(movieEntities);
-
-            *//*movies = movieEntities.snapshot();
+            movies = movieEntities.snapshot();
 
             moviesViewModel.getMoviesList(movies).observe(MainActivity.this, new Observer<PagedList<ListObject>>() {
                 @Override
@@ -77,13 +83,14 @@ public class MainActivity extends AppCompatActivity{
                         @Override
                         public void run() {
                             moviesListAdapter.submitList(model);
+                            model.loadAround(10);
                         }
                     });
 
                 }
-            });*//*
+            });
 
-        });*/
+        });
 
 
 
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity{
             MovieEntity movieEntity = new MovieEntity(movie, directorId, time);
             moviesViewModel.insertMovie(movieEntity);
 
-            //recyclerView.smoothScrollToPosition(moviesListAdapter.getItemCount());
+            //recyclerView.smoothScrollToPosition(moviesListAdapterNew.getItemCount());
 
 
         });

@@ -8,11 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.anjan.architecturecomponent.ListObject;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-
-import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -64,7 +61,12 @@ public class MoviesListAdapterNew extends PagedListAdapter<MovieEntity, MoviesVi
     @Override
     public void onBindViewHolder(MoviesViewHolder holder, int position) {
 
-        holder.bindTo(getItem(position), moviesViewModel);
+        MovieEntity movie = getItem(position);
+        if (movie != null) {
+            holder.bindTo(movie, moviesViewModel);
+        } else {
+            holder.clear(); // we need to use this otherwise recyclerview will be crushed
+        }
     }
 
 
