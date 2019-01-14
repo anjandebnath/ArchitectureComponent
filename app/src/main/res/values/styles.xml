@@ -43,4 +43,11 @@
         <item name="android:minHeight">26dp</item>
     </style>
 
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/splash_background
+        </item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
 </resources>

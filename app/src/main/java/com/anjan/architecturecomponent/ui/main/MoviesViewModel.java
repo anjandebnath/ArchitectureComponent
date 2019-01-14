@@ -17,6 +17,7 @@ import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 import com.anjan.architecturecomponent.pager.DataSourceFactory;
+import com.anjan.architecturecomponent.pager.MainThreadExecutor;
 import com.anjan.architecturecomponent.pager.MovieListDataSource;
 import com.anjan.architecturecomponent.repository.DataRepository;
 
@@ -29,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Executors;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -77,43 +79,6 @@ public class MoviesViewModel extends AndroidViewModel {
         mutableMovieList = new MutableLiveData<>();*/
 
 
-
-
-
-
-        /*DataSource.Factory<Integer, MovieEntity> dataSourceMovieList = dataRepository.getAllMovies();
-
-        DataSource.Factory<Integer, ListObject> integerObjectFactory = dataSourceMovieList.mapByPage(input -> {
-
-            LinkedHashMap<String, Set<MovieEntity>> groupedHashMap = new LinkedHashMap<>();
-            Set<MovieEntity> movieEntitySet = null;
-
-            for (int i = 0; i < input.size(); i++) {
-
-                MovieEntity movieEntity = input.get(i);
-
-                if(movieEntity!= null){
-
-                    String hashMapKey = movieEntity.getTime();
-
-                    if (groupedHashMap.containsKey(hashMapKey)) {
-                        // The key is already in the HashMap; add the pojo object
-                        // against the existing key.
-                        groupedHashMap.get(hashMapKey).add(movieEntity);
-                    } else {
-                        // The key is not there in the HashMap; create a new key-value pair
-                        movieEntitySet = new LinkedHashSet<>();
-                        movieEntitySet.add(movieEntity);
-                        groupedHashMap.put(hashMapKey, movieEntitySet);
-                    }
-                }
-            }
-            return generateListFromMap(groupedHashMap);
-        });
-
-        listObjLiveData = new LivePagedListBuilder<>(integerObjectFactory, PAGE_SIZE).build();*/
-
-
     }
 
     @Override
@@ -148,7 +113,7 @@ public class MoviesViewModel extends AndroidViewModel {
                 .setPageSize(PAGE_SIZE)
                 .build();
 
-       /* PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
+        /*PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
                 .setInitialKey(INITIAL_LOAD_KEY)
                 .setNotifyExecutor(new MainThreadExecutor()) //The executor defining where page loading updates are dispatched.
                 .setFetchExecutor(Executors.newSingleThreadExecutor())

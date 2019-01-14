@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import com.anjan.architecturecomponent.ListObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,48 +15,42 @@ import java.util.List;
  */
 public class MovieListDataSource extends PositionalDataSource<ListObject> {
 
-
     private List<ListObject> list;
-    int size = 0;
 
     public MovieListDataSource(List<ListObject> list){
         this.list = list;
-        size = this.list.size();
+
     }
 
-   /* private int computeCount() {
+    private int computeCount() {
         // actual count code here
+        return list.size();
     }
 
     private List<ListObject> loadRangeInternal(int startPosition, int loadCount) {
         // actual load code here
-    }*/
+        List<ListObject> modelList = new ArrayList<>();
+        int end = Math.min(computeCount(), startPosition + loadCount);
+        for (int i = startPosition; i != end; i++) {
+            modelList.add(list.get(i));
+        }
+
+        return modelList;
+
+    }
 
     @Override
     public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<ListObject> callback) {
         // return info back to PagedList
-
-
-        callback.onResult(list.subList(params.requestedStartPosition, params.requestedLoadSize),
-                params.requestedStartPosition,
-                size);
-
-       /* int totalCount = computeCount();
+        int totalCount = computeCount();
         int position = computeInitialLoadPosition(params, totalCount);
         int loadSize = computeInitialLoadSize(params, position, totalCount);
-        callback.onResult(loadRangeInternal(position, loadSize), position, totalCount);*/
+        callback.onResult(loadRangeInternal(position, loadSize), position, totalCount);
     }
 
     @Override
     public void loadRange(@NonNull LoadRangeParams params, @NonNull LoadRangeCallback<ListObject> callback) {
         // return info back to PagedList
-       /* List<ListObject> result = provider.getStringList(0, params.requestedLoadSize);
-        callback.onResult(result);*/
-
-        callback.onResult(list.subList(
-                params.startPosition,
-                Math.min(params.startPosition + params.loadSize, size)));
-
-        /*callback.onResult(loadRangeInternal(params.startPosition, params.loadSize));*/
+        callback.onResult(loadRangeInternal(params.startPosition, params.loadSize));
     }
 }

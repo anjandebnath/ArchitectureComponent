@@ -43,7 +43,7 @@ public class DataRepository {
         return sInstance;
     }
 
-    public DataRepository(MovieDao dao, DirectorDao directorDao, ExecutorService executor) {
+    private DataRepository(MovieDao dao, DirectorDao directorDao, ExecutorService executor) {
         mIoExecutor = executor;
         movieDao = dao;
         this.directorDao = directorDao;
