@@ -37,12 +37,12 @@ public interface MovieDao {
     @Query("DELETE FROM movie")
     void deleteAll();
 
-    /*@Query("SELECT * FROM movie ORDER BY time ASC")
-    LiveData<List<MovieEntity>> getAllMovies();*/
-
-
     @Query("SELECT * FROM movie ORDER BY time ASC")
-    public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();
+    LiveData<List<MovieEntity>> getAllMovies();
+
+
+    /*@Query("SELECT * FROM movie ORDER BY time ASC")
+    public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();*/
 
     /*@Query("SELECT * FROM movie ORDER BY time ASC")
     List<MovieEntity> getAllMovies();*/

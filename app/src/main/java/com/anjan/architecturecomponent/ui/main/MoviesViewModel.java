@@ -1,15 +1,12 @@
 package com.anjan.architecturecomponent.ui.main;
 
 import android.app.Application;
-import android.arch.core.executor.TaskExecutor;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.paging.DataSource;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
-
 
 import com.anjan.architecturecomponent.ChatModelObject;
 import com.anjan.architecturecomponent.DateObject;
@@ -19,10 +16,8 @@ import com.anjan.architecturecomponent.dao.DirectorDao;
 import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-import com.anjan.architecturecomponent.pager.MainThreadExecutor;
+import com.anjan.architecturecomponent.pager.DataSourceFactory;
 import com.anjan.architecturecomponent.pager.MovieListDataSource;
-import com.anjan.architecturecomponent.pager.StringDataSource;
-import com.anjan.architecturecomponent.pager.StringListProvider;
 import com.anjan.architecturecomponent.repository.DataRepository;
 
 import java.text.ParseException;
@@ -34,8 +29,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by Anjan Debnath on 8/17/2018.
@@ -52,12 +45,17 @@ public class MoviesViewModel extends AndroidViewModel {
     private DirectorDao directorDao;
     DataRepository dataRepository;
 
+    private DataSourceFactory mDataSourceFactory;
+
 
     private LiveData<PagedList<MovieEntity>> moviesLiveData;
     private MutableLiveData<PagedList<ListObject>> mutableMovieList;
 
 
+
     private LiveData<PagedList<ListObject>> listObjLiveData;
+
+
 
     public MoviesViewModel(@NonNull Application application) {
         super(application);
@@ -66,7 +64,8 @@ public class MoviesViewModel extends AndroidViewModel {
 
         dataRepository = DataRepository.getInstance(application);
 
-        PagedList.Config pagedListConfig  =
+
+        /*PagedList.Config pagedListConfig  =
                 (new PagedList.Config.Builder())
                         .setEnablePlaceholders(true)
                         .setPrefetchDistance(PREFETCH_DISTANCE)
@@ -75,7 +74,12 @@ public class MoviesViewModel extends AndroidViewModel {
 
         moviesLiveData = new LivePagedListBuilder<>(dataRepository.getAllMovies(), pagedListConfig).build();
 
-        mutableMovieList = new MutableLiveData<>();
+        mutableMovieList = new MutableLiveData<>();*/
+
+
+
+
+
 
         /*DataSource.Factory<Integer, MovieEntity> dataSourceMovieList = dataRepository.getAllMovies();
 
@@ -109,8 +113,18 @@ public class MoviesViewModel extends AndroidViewModel {
 
         listObjLiveData = new LivePagedListBuilder<>(integerObjectFactory, PAGE_SIZE).build();*/
 
+
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
+
+
+    public LiveData<List<MovieEntity>> getMoviesEntityList(){
+        return movieDao.getAllMovies();
+    }
 
 
     public LiveData<PagedList<MovieEntity>> getMovieEntityList(){
@@ -121,27 +135,32 @@ public class MoviesViewModel extends AndroidViewModel {
 
     public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
 
+        List<ListObject> myList = groupDataIntoHashMap(movieEntityList);
+
+        MovieListDataSource movieListDataSource = new MovieListDataSource(myList);
+
+        mDataSourceFactory = new DataSourceFactory(movieListDataSource);
+
+
         PagedList.Config myConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
                 .setPrefetchDistance(PREFETCH_DISTANCE)
                 .setPageSize(PAGE_SIZE)
                 .build();
 
-        List<ListObject> myList = groupDataIntoHashMap(movieEntityList);
-
-        MovieListDataSource movieListDataSource = new MovieListDataSource(myList);
-
-        PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
+       /* PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
                 .setInitialKey(INITIAL_LOAD_KEY)
                 .setNotifyExecutor(new MainThreadExecutor()) //The executor defining where page loading updates are dispatched.
                 .setFetchExecutor(Executors.newSingleThreadExecutor())
                 .build();
 
-        //pagedStrings.loadAround(myList.size() -1);
-
-
         mutableMovieList.setValue(pagedStrings);
-        return mutableMovieList;
+        return mutableMovieList;*/
+
+
+        listObjLiveData = new LivePagedListBuilder<>(mDataSourceFactory, myConfig).build();
+
+        return listObjLiveData;
 
 
     }
@@ -217,7 +236,6 @@ public class MoviesViewModel extends AndroidViewModel {
                 consolidatedList.add(generalItem);
             }
 
-
         }
 
         return consolidatedList;
@@ -240,21 +258,10 @@ public class MoviesViewModel extends AndroidViewModel {
         return dataRepository.findDirectorById(id);
     }
 
-    public void insert(MovieEntity... movies) {
-        movieDao.insert(movies);
-    }
-
-    public void update(MovieEntity movie) {
-        movieDao.update(movie);
-    }
-
-    public void deleteAll() {
-        movieDao.deleteAll();
-    }
 
     public int findDirector(String name){
         DirectorEntity directorEntity =  null;
-        directorEntity =  directorDao.findDirectorByName(name);
+        directorEntity =  dataRepository.findDirectorByName(name);
         if(directorEntity!= null){
             return directorEntity.getId();
         }else{
@@ -262,11 +269,13 @@ public class MoviesViewModel extends AndroidViewModel {
         }
     }
 
+
+
     public void insertMovie(MovieEntity... movies) {
-        movieDao.insert(movies);
+        dataRepository.insertMovie(movies);
     }
 
     public long insertDirector(DirectorEntity director){
-        return directorDao.insert(director);
+        return dataRepository.insertDirector(director);
     }
 }

@@ -16,7 +16,11 @@ import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -70,9 +74,24 @@ public class MainActivity extends AppCompatActivity{
 
 
 
+        moviesViewModel.getMoviesEntityList().observe(this, new Observer<List<MovieEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<MovieEntity> movieEntities) {
+                moviesViewModel.getMoviesList(movieEntities).observe(MainActivity.this, new Observer<PagedList<ListObject>>() {
+                    @Override
+                    public void onChanged(@Nullable PagedList<ListObject> listObjects) {
+                        moviesListAdapter.submitList(listObjects);
+
+                    }
+                });
+            }
+        });
+
+
+
         //moviesViewModel.getMovieEntityList().observe(this, movieEntities -> moviesListAdapterNew.submitList(movieEntities));
 
-        moviesViewModel.getMovieEntityList().observe(this, movieEntities -> {
+        /*moviesViewModel.getMovieEntityList().observe(this, movieEntities -> {
 
             movies = movieEntities.snapshot();
 
@@ -83,14 +102,13 @@ public class MainActivity extends AppCompatActivity{
                         @Override
                         public void run() {
                             moviesListAdapter.submitList(model);
-                            model.loadAround(10);
                         }
                     });
 
                 }
             });
 
-        });
+        });*/
 
 
 
@@ -100,7 +118,11 @@ public class MainActivity extends AppCompatActivity{
             startActivity(i);*/
 
             long milliSec = System.currentTimeMillis();
-            String time = Long.toString(milliSec);
+            Date date = new Date(milliSec);
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+            String dateFormatted = formatter.format(date);
+//            String time = Long.toString(milliSec);
 
             String movie = "titanic";
             String director = "James Kameron";
@@ -111,7 +133,7 @@ public class MainActivity extends AppCompatActivity{
             if( directorId < 0){
                 directorId = (int) moviesViewModel.insertDirector(directorEntity);
             }
-            MovieEntity movieEntity = new MovieEntity(movie, directorId, time);
+            MovieEntity movieEntity = new MovieEntity(movie, directorId, dateFormatted);
             moviesViewModel.insertMovie(movieEntity);
 
             //recyclerView.smoothScrollToPosition(moviesListAdapterNew.getItemCount());

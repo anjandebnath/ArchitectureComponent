@@ -9,6 +9,7 @@ import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -49,9 +50,60 @@ public class DataRepository {
 
     }
 
-    public DataSource.Factory<Integer, MovieEntity> getAllMovies() {
-        return movieDao.getAllMovies();
+    public void insertMovie(MovieEntity... movies){
+
+        mIoExecutor.execute(() -> movieDao.insert(movies));
+
     }
+
+    public long insertDirector(DirectorEntity director){
+
+        Callable<Long> callable = () -> directorDao.insert(director);
+
+        try {
+            return mIoExecutor.submit(callable).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+
+    }
+
+    public DirectorEntity findDirectorByName(String name){
+
+        Callable<DirectorEntity> callable = () -> directorDao.findDirectorByName(name);
+        try {
+            return mIoExecutor.submit(callable).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /*public List<MovieEntity> getAllMovies() {
+
+        List<MovieEntity> result = null;
+
+        Callable<List<MovieEntity>> callable = new Callable<List<MovieEntity>>() {
+            @Override
+            public List<MovieEntity> call() throws Exception {
+                return movieDao.getAllMovies();
+            }
+        };
+
+        Future<List<MovieEntity>> future = mIoExecutor.submit(callable);
+
+        try {
+            result = future.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }*/
 
     public DirectorEntity findDirectorById(int id){
         DirectorEntity result = null;
