@@ -99,13 +99,12 @@ public class MoviesViewModel extends AndroidViewModel {
 
 
     public LiveData<PagedList<ListObject>> getMoviesList(List<MovieEntity> movieEntityList) {
-
+        mutableMovieList = new MutableLiveData<>();
         List<ListObject> myList = groupDataIntoHashMap(movieEntityList);
 
         MovieListDataSource movieListDataSource = new MovieListDataSource(myList);
 
-        mDataSourceFactory = new DataSourceFactory(movieListDataSource);
-
+        //mDataSourceFactory = new DataSourceFactory(movieListDataSource);
 
         PagedList.Config myConfig = new PagedList.Config.Builder()
                 .setEnablePlaceholders(true)
@@ -113,19 +112,22 @@ public class MoviesViewModel extends AndroidViewModel {
                 .setPageSize(PAGE_SIZE)
                 .build();
 
-        /*PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
+
+        PagedList<ListObject> pagedStrings = new PagedList.Builder<Integer, ListObject>(movieListDataSource, myConfig)
                 .setInitialKey(INITIAL_LOAD_KEY)
                 .setNotifyExecutor(new MainThreadExecutor()) //The executor defining where page loading updates are dispatched.
                 .setFetchExecutor(Executors.newSingleThreadExecutor())
                 .build();
 
         mutableMovieList.setValue(pagedStrings);
-        return mutableMovieList;*/
+        return mutableMovieList;
 
+
+       /*
 
         listObjLiveData = new LivePagedListBuilder<>(mDataSourceFactory, myConfig).build();
 
-        return listObjLiveData;
+        return listObjLiveData;*/
 
 
     }
