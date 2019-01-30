@@ -1,8 +1,11 @@
 package com.anjan.architecturecomponent.ui.main;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.paging.PagedList;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -58,7 +61,13 @@ public class MainActivity extends AppCompatActivity{
 
         recyclerView.setAdapter(moviesListAdapter);
 
-        moviesViewModel.getMoviesList().observe(this, movieEntities -> moviesListAdapter.submitList(movieEntities));
+        moviesViewModel.getMoviesList().observe(this, new Observer<PagedList<MovieEntity>>() {
+            @Override
+            public void onChanged(@Nullable PagedList<MovieEntity> movieEntities) {
+                int i = 1;
+                moviesListAdapter.submitList(movieEntities);
+            }
+        });
 
 
 
@@ -99,7 +108,7 @@ public class MainActivity extends AppCompatActivity{
             }
         });*/
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
+        /*recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy)
@@ -122,7 +131,7 @@ public class MainActivity extends AppCompatActivity{
                     }
                 }
             }
-        });
+        });*/
 
     }
 
