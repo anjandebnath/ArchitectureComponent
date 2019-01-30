@@ -27,12 +27,15 @@ import static com.anjan.architecturecomponent.entity.MovieEntity.DIFF_CALLBACK;
 public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHolder> {
     private LayoutInflater layoutInflater;
     private Context context;
+    MoviesViewModel moviesViewModel;
 
 
-    public MoviesListAdapter(Context context) {
+
+    public MoviesListAdapter(Context context, MoviesViewModel moviesViewModel) {
         super(DIFF_CALLBACK);
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
+        this.moviesViewModel = moviesViewModel;
     }
 
 
@@ -53,7 +56,7 @@ public class MoviesListAdapter extends PagedListAdapter<ListObject, MoviesViewHo
         ListObject listObject = getItem(position);
 
         if (listObject != null) {
-            holder.bindTo(listObject);
+            holder.bindTo(listObject, moviesViewModel);
         } else {
 
             // By debugging I found that while reading data in view model via Dao, it is returning list of size 25.

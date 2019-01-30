@@ -41,6 +41,10 @@ public interface MovieDao {
     LiveData<List<MovieEntity>> getAllMovies();
 
 
+    @Query("UPDATE movie set movieName = :movieName WHERE movID = :movieId")
+    void updateMovieName(String movieName, int movieId);
+
+
     /*@Query("SELECT * FROM movie ORDER BY time ASC")
     public abstract DataSource.Factory<Integer, MovieEntity> getAllMovies();*/
 

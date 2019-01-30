@@ -47,15 +47,26 @@ public class MoviesViewHolder extends RecyclerView.ViewHolder {
             directorText.setText(director.fullName);
         }
 
+
+
+
     }
 
     // for MoviesListAdapterNew
-    void bindTo(ListObject listObject) {
+    void bindTo(ListObject listObject, MoviesViewModel moviesViewModel) {
 
         if(listObject instanceof ChatModelObject){
             ChatModelObject generalItem = (ChatModelObject) listObject;
             itemView.setTag(generalItem.getMovieEntity());
             titleText.setText(generalItem.getMovieEntity().movieName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    moviesViewModel.updateMovieName("Anjan Debnath", generalItem.getMovieEntity().id);
+                }
+            });
+
         }else if(listObject instanceof DateObject){
             DateObject dateObject = (DateObject) listObject;
             itemView.setTag(dateObject.getDate());

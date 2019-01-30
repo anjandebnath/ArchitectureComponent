@@ -236,6 +236,10 @@ public class MoviesViewModel extends AndroidViewModel {
         }
     }
 
+    public void updateMovieName(String movieName, int id){
+        dataRepository.updateMovieName(movieName,id);
+    }
+
 
 
     public void insertMovie(MovieEntity... movies) {

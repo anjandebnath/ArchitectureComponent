@@ -56,6 +56,16 @@ public class DataRepository {
 
     }
 
+
+    public void updateMovieName(String movieName, int id){
+        mIoExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                movieDao.updateMovieName(movieName, id);
+            }
+        });
+    }
+
     public long insertDirector(DirectorEntity director){
 
         Callable<Long> callable = () -> directorDao.insert(director);

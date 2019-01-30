@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity{
        /* moviesListAdapterNew = new MoviesListAdapterNew(MainActivity.this, moviesViewModel);
         moviesListAdapterNew.registerAdapterDataObserver(new AdapterDataSetObserver());*/
 
-        moviesListAdapter = new MoviesListAdapter(MainActivity.this);
+        moviesListAdapter = new MoviesListAdapter(MainActivity.this, moviesViewModel);
         moviesListAdapter.registerAdapterDataObserver(new AdapterDataSetObserver());
 
         //recyclerView.setHasFixedSize(true);
