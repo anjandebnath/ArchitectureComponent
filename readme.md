@@ -54,7 +54,8 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 ### Steps:
 
-1. Create a notification channel
+- Create a notification channel
     On Android-powered devices running Android 8.0 (API level 26) or higher, notification channels that you create in your app appear as **Categories** under **App notifications** in the device **Settings** app.
+    ![image](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/notifivation/app/img/channel.png)
 
 
