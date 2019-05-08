@@ -21,7 +21,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
     
 - Add a notification action button
 
-    `The notification framework lets you embed a notification action button directly in the notification itself.`
-    `implement a broadcast receiver that calls the updateNotification() method when the user taps an Update Notification action button inside the notification.`    
+    `The notification framework lets you embed a Notification Action Button directly in the notification itself.`
+    `Implement a broadcast receiver that calls the updateNotification() method when the user taps an Update Notification action button inside the notification.`    
 
 
