@@ -23,5 +23,10 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
     `The notification framework lets you embed a Notification Action Button directly in the notification itself.`
     `Implement a broadcast receiver that calls the updateNotification() method when the user taps an Update Notification action button inside the notification.`    
+    
+    
+    
+- There are various types of Notification
+ [Notification Style](https://www.tutlane.com/tutorial/android/android-notifications-bigtextstyle-bigpicturestyle-inboxstyle)    
 
 

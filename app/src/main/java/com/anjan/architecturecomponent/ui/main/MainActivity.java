@@ -239,6 +239,7 @@ public class MainActivity extends AppCompatActivity{
                 .setAutoCancel(true).setContentIntent(notificationPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setDefaults(NotificationCompat.DEFAULT_ALL);
+
         return notifyBuilder;
     }
 
