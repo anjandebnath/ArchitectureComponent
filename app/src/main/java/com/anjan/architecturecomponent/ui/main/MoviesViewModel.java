@@ -10,7 +10,6 @@ import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-
 import com.anjan.architecturecomponent.MoviesDatabase;
 import com.anjan.architecturecomponent.dao.MovieDao;
 import com.anjan.architecturecomponent.entity.MovieEntity;
@@ -51,7 +50,7 @@ public class MoviesViewModel extends AndroidViewModel {
      */
     private LiveData<List<MovieEntity>> getMoviesLiveData(){
 
-        moviesLiveData = movieDao.getAllMoviesByDate("02/04/1997");
+        moviesLiveData = movieDao.getAllMovies();
         return moviesLiveData;
 
     }
@@ -114,4 +113,8 @@ public class MoviesViewModel extends AndroidViewModel {
     public void deleteAll() {
         movieDao.deleteAll();
     }
+
+
+
+
 }

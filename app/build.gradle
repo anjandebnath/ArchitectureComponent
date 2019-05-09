@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.anjan.architecturecomponent"
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion 19
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -24,7 +24,7 @@ android {
     }
     dexOptions {
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -32,7 +32,7 @@ dependencies {
     def lifecycle_version = "1.1.1"
     def room_version = "1.1.1"
     def paging_version = "1.0.1"
-    def support_version = "27.1.1"
+    def support_version = "28.0.0"
     def constraint_version = "1.1.2"
     def junit_version = "4.12"
     def database_debug = "1.0.2"
@@ -62,4 +62,11 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.jakewharton:butterknife-annotations:8.8.1'
+
+    // emoji
+    implementation "com.android.support:support-emoji:$support_version" // To use the EmojiCompat support library
+    implementation "com.android.support:support-emoji-appcompat:$support_version" // To use the EmojiCompat with AppCompat widgets
+    implementation "com.android.support:support-emoji-bundled:$support_version" // To use the EmojiCompat support library with bundled font configuration
+    // to read emoji from edit text
+    implementation 'org.apache.commons:commons-text:1.6'
 }

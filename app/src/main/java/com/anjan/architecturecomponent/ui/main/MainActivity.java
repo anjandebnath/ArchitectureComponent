@@ -2,10 +2,15 @@ package com.anjan.architecturecomponent.ui.main;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.text.emoji.EmojiCompat;
+import android.support.text.emoji.FontRequestEmojiCompatConfig;
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
+import android.support.v4.provider.FontRequest;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        intiEmojiCompact(true);
 
         setContentView(R.layout.activity_main);
 
@@ -95,6 +102,33 @@ public class MainActivity extends AppCompatActivity{
         };
 
         moviesViewModel.getElapsedTime().observe(this, elapsedTimeObserver);
+    }
+
+    public void intiEmojiCompact(boolean isBundledFont){
+
+        if(isBundledFont){
+            useBundledFontToConfigEmojiCompact(this);
+        }else{
+            useDownloadableFontToConfigEmojiCompact(this);
+        }
+    }
+
+
+    public void useBundledFontToConfigEmojiCompact(Context context){
+
+        EmojiCompat.Config config = new BundledEmojiCompatConfig(context);
+        EmojiCompat.init(config);
+    }
+
+    public void useDownloadableFontToConfigEmojiCompact(Context context){
+
+        FontRequest fontRequest = new FontRequest(
+                "com.google.android.gms.fonts",
+                "com.google.android.gms",
+                "Noto Color Emoji Compat",
+                R.array.com_google_android_gms_fonts_certs);
+        EmojiCompat.Config config = new FontRequestEmojiCompatConfig(context, fontRequest);
+        EmojiCompat.init(config);
     }
 
 

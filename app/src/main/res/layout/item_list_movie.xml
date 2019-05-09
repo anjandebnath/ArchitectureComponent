@@ -6,14 +6,14 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/tvMovieTitle"
+        android:id="@+id/tv_emoji_detail"
         style="@style/movie_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Titanic" />
 
-    <TextView
-        android:id="@+id/tvMovieDirectorFullName"
+    <android.support.text.emoji.widget.EmojiAppCompatTextView
+        android:id="@+id/tv_emoji"
         style="@style/movie_director"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

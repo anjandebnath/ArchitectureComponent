@@ -1,32 +1,19 @@
 {
-  "movies": [
+  "emojies": [
     {
-      "movieName": "Avatar:Special Edition (2010)",
-      "full_name": "James Cameron"
+      "emoji_unicode": "U+1F601",
+      "emoji_byte": "\\xF0\\x9F\\x98\\x81",
+      "emoji_name": "grinning face with smiling eyes"
     },
     {
-      "movieName": "Inception",
-      "full_name": "Christopher Nolan"
+      "emoji_unicode": "U+1F60C",
+      "emoji_byte": "\\xF0\\x9F\\x98\\x82",
+      "emoji_name": "relieved face"
     },
     {
-      "movieName": "Searching",
-      "full_name": "Annesh Chaganty"
-    },
-    {
-      "movieName": "Passengers",
-      "full_name": "Morten Tyldum"
-    },
-    {
-      "movieName": "The Big Short",
-      "full_name": "Adam McKay"
-    },
-    {
-      "movieName": "Arrival",
-      "full_name": "Denis Villeneuve"
-    },
-    {
-      "movieName": "Blade Runner 2049",
-      "full_name": "Denis Villeneuve"
+      "emoji_unicode": "U+1F603",
+      "emoji_byte": "\\xF0\\x9F\\x98\\x83",
+      "emoji_name": "smiling face with open mouth"
     }
   ]
 }

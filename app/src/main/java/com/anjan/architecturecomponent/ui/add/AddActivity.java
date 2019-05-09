@@ -10,12 +10,19 @@ import android.widget.EditText;
 import com.anjan.architecturecomponent.R;
 import com.anjan.architecturecomponent.entity.DirectorEntity;
 import com.anjan.architecturecomponent.entity.MovieEntity;
-import com.anjan.architecturecomponent.ui.main.MoviesViewModel;
+
+
+import org.apache.commons.text.StringEscapeUtils;
+
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText editTextMovie;
-    EditText editTextDirector;
+    EditText editTextEmoji;
+    EditText editTextEmojiText;
     Button buttonSave;
 
     AddMoviesViewModel addMoviesViewModel;
@@ -26,8 +33,8 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        editTextMovie = findViewById(R.id.editText_movie);
-        editTextDirector = findViewById(R.id.editText_director);
+        editTextEmoji = findViewById(R.id.editText_emoji);
+        editTextEmojiText = findViewById(R.id.editText_emojival);
         buttonSave = findViewById(R.id.button_save);
 
         addMoviesViewModel = ViewModelProviders.of(this).get(AddMoviesViewModel.class);
@@ -36,8 +43,11 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String movie = editTextMovie.getEditableText().toString();
-                String director = editTextDirector.getEditableText().toString();
+                String movie = StringEscapeUtils.escapeJava(editTextEmoji.getEditableText().toString());
+                String director = editTextEmojiText.getEditableText().toString();
+
+
+                String unicodeMovie = utf8decode(movie);
                 DirectorEntity directorEntity = new DirectorEntity(director);
 
                 //check duplicate id can not be inserted
@@ -45,15 +55,41 @@ public class AddActivity extends AppCompatActivity {
                 if( directorId < 0){
                     directorId = (int) addMoviesViewModel.insertDirector(directorEntity);
                 }
-                MovieEntity movieEntity = new MovieEntity(movie, directorId);
+                MovieEntity movieEntity = new MovieEntity(unicodeMovie, directorId);
                 addMoviesViewModel.insertMovie(movieEntity);
 
 
-                editTextMovie.setText("");
-                editTextDirector.setText("");
+                editTextEmoji.setText("");
+                editTextEmojiText.setText("");
             }
         });
 
+    }
+
+
+
+    public String utf8decode(String utf16String) {
+
+        /*String text = new String(utf16String.getBytes(), StandardCharsets.UTF_8);
+
+        int codepoint = text.codePointAt(0);
+
+        String unicodeString ="U+"+Integer.toHexString(codepoint);*/
+
+
+        String string = utf16String;
+        byte[] utf8 = new byte[0];
+        try {
+            utf8 = string.getBytes("UTF-8");
+            string = new String(utf8, "UTF-8");
+            System.out.println(string);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return string;
     }
 
 }

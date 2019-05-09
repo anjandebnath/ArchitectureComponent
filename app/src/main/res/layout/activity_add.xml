@@ -7,41 +7,52 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.add.AddActivity">
 
-    <EditText
-        android:id="@+id/editText_movie"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+
+
+
+
+    <android.support.text.emoji.widget.EmojiAppCompatEditText
+        android:id="@+id/editText_emoji"
+        android:layout_width="95dp"
+        android:layout_height="130dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Movie"
+        android:textSize="40dp"
+        android:hint="Emoji"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText_director"
+        android:id="@+id/editText_emojival"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Director"
+        android:hint="Emoji name"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_movie" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_emoji" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="136dp"
-        android:layout_marginStart="136dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
         android:layout_marginTop="28dp"
         android:contentDescription="button save"
         android:text="SAVE"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_director" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_emojival" />
 </android.support.constraint.ConstraintLayout>

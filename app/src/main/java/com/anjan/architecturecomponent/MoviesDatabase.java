@@ -82,10 +82,10 @@ public abstract class MoviesDatabase extends RoomDatabase {
 
                 JSONObject item = movie.getJSONObject(i);
 
-                String fullName = item.getString("full_name");
-                DirectorEntity directorEntity = new DirectorEntity(fullName);
-                String movieName = item.getString("movieName");
-                MovieEntity movieEntity = new MovieEntity(movieName, (int) directorDao.insert(directorEntity));
+                String emoji_name = item.getString("emoji_name");
+                DirectorEntity directorEntity = new DirectorEntity(emoji_name);
+                String emoji_unicode = item.getString("emoji_unicode");
+                MovieEntity movieEntity = new MovieEntity(emoji_unicode, (int) directorDao.insert(directorEntity));
                 Date d = DateTypeConverter.stringTimeToDate("02/04/1997");
                 movieEntity.setReleaseDate(d);
 
@@ -96,6 +96,8 @@ public abstract class MoviesDatabase extends RoomDatabase {
             exception.printStackTrace();
         }
     }
+
+
 
     private static JSONArray loadJsonArray(Context context) {
         StringBuilder builder = new StringBuilder();
@@ -108,7 +110,7 @@ public abstract class MoviesDatabase extends RoomDatabase {
                 builder.append(line);
             }
             JSONObject json = new JSONObject(builder.toString());
-            return json.getJSONArray("movies");
+            return json.getJSONArray("emojies");
 
         } catch (IOException | JSONException exception) {
             exception.printStackTrace();
@@ -116,4 +118,6 @@ public abstract class MoviesDatabase extends RoomDatabase {
 
         return null;
     }
+
+
 }

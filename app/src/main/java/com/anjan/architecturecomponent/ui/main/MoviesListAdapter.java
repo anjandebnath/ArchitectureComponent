@@ -48,12 +48,25 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Mo
 
         final MovieEntity movie = movieList.get(position);
         if (movie != null) {
-            holder.titleText.setText(movie.movieName);
+
+             // this will replace U+ with 0x
+             // U+1F601 will be presented as 0x1F601
+             String emoji = replaceUwith0xfromUnicode(movie.movieName);
+
+             // we need to use decode method to convert String decimal to integer DecimalNumeral
+            int decimal_emoji = Integer.decode(emoji);
+            System.out.println("Hex value is " + decimal_emoji);
+
+
+            holder.emoji.setText(getEmoji(decimal_emoji));
 
             final DirectorEntity director = MoviesDatabase.getDatabase(context).directorDao().findDirectorById(movie.directorId);
             final String directorFullName;
             if (director != null) {
-                holder.directorText.setText(director.fullName);
+
+
+
+                holder.emojiDetail.setText(director.fullName);
                 directorFullName = director.fullName;
             } else {
                 directorFullName = "";
@@ -77,14 +90,39 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Mo
     }
 
     static class MoviesViewHolder extends RecyclerView.ViewHolder {
-        private TextView titleText;
-        private TextView directorText;
+        private TextView emojiDetail;
+        private TextView emoji;
 
         public MoviesViewHolder(View itemView) {
             super(itemView);
 
-            titleText = itemView.findViewById(R.id.tvMovieTitle);
-            directorText = itemView.findViewById(R.id.tvMovieDirectorFullName);
+            emojiDetail = itemView.findViewById(R.id.tv_emoji_detail);
+            emoji = itemView.findViewById(R.id.tv_emoji);
         }
+    }
+
+    private static String replaceUwith0xfromUnicode(String content) {
+        content = content.replaceAll("U\\+", "0x");
+        String keyword = "0x";
+
+        int index = content.indexOf(keyword);
+        int spaceIndex;
+
+        while (index >=0){
+            spaceIndex = content.indexOf(" ", index);
+
+            if(spaceIndex > index) {
+                String emoji = content.substring(index, spaceIndex);
+                content = content.replaceAll(emoji, getEmoji(Integer.decode(emoji)));
+            }
+            index = content.indexOf(keyword, index+keyword.length());
+        }
+
+        return content;
+    }
+
+
+    public static String getEmoji(int unicode){
+        return new String(Character.toChars(unicode));
     }
 }
