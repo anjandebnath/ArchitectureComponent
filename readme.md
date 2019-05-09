@@ -1,10 +1,9 @@
-This project covers the syllabus of `Associate Android Developer Certification`
 
-[Exam Content](https://developers.google.com/training/certification/associate-android-developer/#exam-content) is here and [x] `topics are covered here`.
-
-Emoji display
 
 # Ways of Initialise Emoji
+
+Detailed can be found here [link](https://developer.android.com/guide/topics/ui/look-and-feel/emoji-compat#using-widgets-with-appcompat)
+
 
 ### Emoji can be applied on 
 
