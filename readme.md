@@ -46,6 +46,14 @@ Emoji display
 - Then `Integer.decode()` to convert it to `Integer DecimalNumeral` before showing as a emoji on view.
 
                 int unicode = Integer.decode(emoji);
+                
+                
+### Read Emoji from Edit text
+We use this library to read emoji from edit text
+
+        implementation 'org.apache.commons:commons-text:1.6'       
+        
+        StringEscapeUtils.escapeJava(editTextEmoji.getEditableText().toString());         
 
 
 
