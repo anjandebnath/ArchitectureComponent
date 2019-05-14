@@ -3,6 +3,9 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 This link contain meticulous info about the attributes of CostraintLayout [Link](https://developer.android.com/reference/android/support/constraint/ConstraintLayout#CircularPositioning)
 
+Ref : [Medium](https://medium.com/@eugenebrusov/using-of-constraintlayout-to-build-out-cardview-with-material-design-e111e64575c2)
+[AndroidPub](https://android.jlelse.eu/learning-to-implement-constraintlayout-in-android-8ddc69fe0a1a)
+
 ### TIPS 
 
 #### Tip 1
