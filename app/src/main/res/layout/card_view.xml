@@ -28,7 +28,9 @@
            app:layout_constraintBottom_toTopOf="@+id/supporting_text"
 
            app:layout_constraintDimensionRatio="H, 16:9"
-           android:contentDescription="TODO" />
+           android:contentDescription="TODO"
+           app:layout_constraintVertical_chainStyle="packed"
+           />
        
        <TextView
            android:id="@+id/supporting_text"
@@ -47,7 +49,9 @@
 
            android:lineSpacingExtra="8dp"
            android:textColor="#DE000000"
+
            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+           android:text="@string/supporting"
            />
 
    </android.support.constraint.ConstraintLayout>
