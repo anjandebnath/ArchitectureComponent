@@ -25,17 +25,15 @@ This project covers the syllabus of `Associate Android Developer Certification`
      
 #### Tip 4
 
-    app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintDimensionRatio="16:9"
     
 - Suppose you have an ImageView whose width should match the Screen Width and the Image Aspect ratio should be 16:9    
 
     
     
+        app:layout_constraintDimensionRatio="H,3:1"   
     
-    app:layout_constraintDimensionRatio="H,3:1"   
-    
-     
-    
+       
 - To set aspect ratio **if both dimensions are set to MATCH_CONSTRAINT (0dp).** 
 - **H,3:1 will always make the ImageView appear 3 times wider than height.**
 - The prefix H or W tells ConstraintLayout which dimension **should be adjusted.** 
