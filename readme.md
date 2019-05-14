@@ -1,6 +1,7 @@
 This project covers the syllabus of `Associate Android Developer Certification`
 
 
+This link contain meticulous info about the attributes of CostraintLayout [Link](https://developer.android.com/reference/android/support/constraint/ConstraintLayout#CircularPositioning)
 
 ### TIPS 
 
