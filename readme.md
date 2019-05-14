@@ -9,7 +9,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
         to support both RTL and LTR then we can not use layout_marginleft and layout_marginRight there
         we use layout_marginstart and layout_maginend.
         
-  [](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/relative_positioning.png)
+  [img1](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/relative_positioning.png)
         
 #### Tip 2
      xmlns:android="http://schemas.android.com/apk/res/android" 
@@ -21,7 +21,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
     When a dimension is set to MATCH_CONSTRAINT, the default behavior is
     to have the resulting size take all the available space. 
 
- [](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/matchconstraint.png)   
+ [img2](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/matchconstraint.png)   
      
 #### Tip 4
 
@@ -32,7 +32,9 @@ This project covers the syllabus of `Associate Android Developer Certification`
     
     
     
-    app:layout_constraintDimensionRatio="H,3:1"    
+    app:layout_constraintDimensionRatio="H,3:1"   
+    
+     
     
 - To set aspect ratio **if both dimensions are set to MATCH_CONSTRAINT (0dp).** 
 - **H,3:1 will always make the ImageView appear 3 times wider than height.**
@@ -48,7 +50,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
     A set of widgets are considered a chain if they are linked together via a bi-directional connection.  
     
-[](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/chain.png)
+[img3](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/chain.png)
 
 
 
