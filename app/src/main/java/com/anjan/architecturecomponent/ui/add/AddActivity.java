@@ -70,26 +70,13 @@ public class AddActivity extends AppCompatActivity {
 
     public String utf8decode(String utf16String) {
 
-        /*String text = new String(utf16String.getBytes(), StandardCharsets.UTF_8);
+        String text = new String(utf16String.getBytes(), StandardCharsets.UTF_8);
 
         int codepoint = text.codePointAt(0);
 
-        String unicodeString ="U+"+Integer.toHexString(codepoint);*/
+        String unicodeString ="U+"+Integer.toHexString(codepoint);
 
-
-        String string = utf16String;
-        byte[] utf8 = new byte[0];
-        try {
-            utf8 = string.getBytes("UTF-8");
-            string = new String(utf8, "UTF-8");
-            System.out.println(string);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-
-
-        return string;
+        return unicodeString;
     }
 
 }
