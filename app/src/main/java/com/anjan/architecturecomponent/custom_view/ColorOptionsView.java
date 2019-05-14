@@ -177,6 +177,7 @@ public class ColorOptionsView extends LinearLayout{
                     event.getText().add(text);
                 }
             }
+            @SuppressLint("WrongConstant")
             @Override
             public void onInitializeAccessibilityEvent(View host, AccessibilityEvent event) {
                 super.onInitializeAccessibilityEvent(host, event);
