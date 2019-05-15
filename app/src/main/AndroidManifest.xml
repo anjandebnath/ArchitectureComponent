@@ -3,7 +3,7 @@
     package="com.anjan.architecturecomponent">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+
+        <activity
+            android:name=".ui.CardViewActivity"
+            android:label="@string/title_activity_card_view"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +24,20 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.main.MainActivity">
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
         <activity
             android:name=".ui.add.AddActivity"
-            android:label="@string/title_activity_add">
+            android:label="@string/title_activity_add"></activity>
 
-        </activity>
-
-        <service android:name=".job_schedulaer.DbUpdateJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" ></service>
+        <service
+            android:name=".job_schedulaer.DbUpdateJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>
