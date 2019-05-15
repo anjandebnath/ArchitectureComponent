@@ -29,7 +29,7 @@ public class MovieListView extends LinearLayout {
         //set orientation and gravity
         setOrientation(LinearLayout.VERTICAL);
 
-        // set layout of the custom view
+        // set avatar_media_supporting_text of the custom view
         LayoutInflater.from(context).inflate(R.layout.view_list_movie, this, true);
 
         init(movieTitle, directorName);
@@ -42,7 +42,7 @@ public class MovieListView extends LinearLayout {
         //set orientation and gravity
         setOrientation(LinearLayout.VERTICAL);
 
-        // set layout of the custom view
+        // set avatar_media_supporting_text of the custom view
         LayoutInflater.from(context).inflate(R.layout.view_list_movie, this, true);
 
 

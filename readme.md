@@ -73,6 +73,22 @@ When need to include RecyclerView/CardView from another layout below toolbar lay
 
 
 
+### Tip 9
+
+    android:minWidth="0dp"
+    android:minHeight="0dp"
+   
+
+Those minimum and maximum dimensions will be used by ConstraintLayout when its dimensions are set to **WRAP_CONTENT.**
+
+
+### Tip 10
+
+    android:layout_marginBottom="8dp" 
+    
+has no visual impact so it can be eliminated from view    
+
+
 
 
 

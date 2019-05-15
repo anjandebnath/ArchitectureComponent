@@ -48,7 +48,7 @@ public class MoviesListAdapter extends PagedListAdapter<MovieEntity, MoviesViewH
 
     @Override
     public MoviesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //final View itemView = layoutInflater.inflate(R.layout.item_list_movie, parent, false);
+        //final View itemView = layoutInflater.inflate(R.avatar_media_supporting_text.item_list_movie, parent, false);
 
         // no need for a LayoutInflater instance— the custom view inflates itself
         MovieListView movieListView = new MovieListView(parent.getContext());

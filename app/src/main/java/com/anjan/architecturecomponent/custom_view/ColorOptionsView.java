@@ -42,7 +42,7 @@ public class ColorOptionsView extends LinearLayout{
         setOrientation(LinearLayout.HORIZONTAL);
         setGravity(Gravity.CENTER_VERTICAL);
 
-        // set layout of the custom view
+        // set avatar_media_supporting_text of the custom view
         LayoutInflater.from(context).inflate(R.layout.view_color_options, this, true);
 
 
