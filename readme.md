@@ -57,7 +57,8 @@ Ref : [Medium](https://medium.com/@eugenebrusov/using-of-constraintlayout-to-bui
 #### Tip 7 
 
         MATCH_PARENT is not recommended for widgets contained in a ConstraintLayout. 
-        Similar behavior can be defined by using MATCH_CONSTRAINT with the corresponding left/right or top/bottom constraints being set to "parent".
+        Similar behavior can be defined by using MATCH_CONSTRAINT with the corresponding left/right or top/bottom
+        constraints being set to "parent".
         
 #### Tip 8
 
@@ -66,7 +67,9 @@ When need to include RecyclerView/CardView from another layout below toolbar lay
           app:layout_behavior="@string/appbar_scrolling_view_behavior" 
        
 
+[Problem](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/1.png)
 
+[Solution](https://github.com/anjandebnath/ArchitectureComponent/blob/feature/constraintlayout/img/2.png)
 
 
 
