@@ -18,6 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
 
+
             android:scaleType="centerCrop"
             app:srcCompat = "@android:color/darker_gray"
 
@@ -57,6 +58,7 @@
             android:layout_marginEnd="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="#FFFFFFFF"
+            android:text="@string/primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/sub_text"
@@ -71,6 +73,7 @@
             android:layout_marginBottom="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#B3FFFFFF"
+            android:text="@string/subtext"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/action_button_1" />
@@ -85,6 +88,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textColor="#FFFFFFFF"
+            android:text="@string/action_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -98,6 +102,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textColor="#FFFFFFFF"
+            android:text="@string/action_2"
             app:layout_constraintTop_toTopOf="@+id/action_button_1"
             app:layout_constraintStart_toEndOf="@+id/action_button_1" />
 
