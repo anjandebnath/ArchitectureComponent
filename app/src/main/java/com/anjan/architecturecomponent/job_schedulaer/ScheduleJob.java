@@ -24,22 +24,26 @@ public class ScheduleJob {
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    public void scheduleJobFirebaseToRoomDataUpdate(){
+    public void scheduleJobToTriggerNotification(){
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 
-            JobScheduler jobScheduler = (JobScheduler) mContext
-                    .getSystemService(JOB_SCHEDULER_SERVICE);
-            ComponentName componentName = new ComponentName(mContext, DbUpdateJobService.class);
+            //to schedule a job first you need to get JobScheduler instance
+            JobScheduler jobScheduler = (JobScheduler) mContext.getSystemService(JOB_SCHEDULER_SERVICE);
+
+            ComponentName componentName = new ComponentName(mContext, NotifyMeJobService.class);
 
             long interValMillis = 17 * 60 * 1000;
-            long refreshTime = 5* 60 * 1000;
+            long refreshTime = 10* 60 * 1000;
 
+
+            //JobInfo.Builder has various setter methods which allow you to define your Job.
             JobInfo jobInfo = new JobInfo.Builder(1, componentName)
-                    .setPeriodic(interValMillis, refreshTime) // to run periodically
+                    .setPeriodic(interValMillis, refreshTime) // to run periodically*/
                     .setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY) // it can only start if the device is on a specific kind of network.
                     .setPersisted(true)    // task should continue to exist after the device has been rebooted.
                     .build();
+
 
             int ret = jobScheduler.schedule(jobInfo);
             if (ret == JobScheduler.RESULT_SUCCESS) {

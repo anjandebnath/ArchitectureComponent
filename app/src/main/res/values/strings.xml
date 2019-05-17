@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">ArchitectureComponent</string>
     <string name="title_activity_add">AddActivity</string>
-    <string name="notification_title">Firebase Cloud</string>
     <string name="notification_content">Data from Firebase cloud has been saved into local database</string>
+
+    <string name="notification_channel_name">GAAD Notification channel</string>
+    <string name="notification_channel_description">Notification description from GAAD</string>
+
+    <string name="notification_title">You\'ve been notified!</string>
+    <string name="notification_text">This is your notification text.</string>
+    <string name="update">Update Notification</string>
 </resources>

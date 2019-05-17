@@ -26,7 +26,7 @@
 
         </activity>
 
-        <service android:name=".job_schedulaer.DbUpdateJobService"
+        <service android:name=".job_schedulaer.NotifyMeJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" ></service>
     </application>
 

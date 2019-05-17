@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity{
 
         if(!preferences.getBoolean("firstRunComplete", false)){
             //schedule the job only once.
-            new ScheduleJob(this).scheduleJobFirebaseToRoomDataUpdate();
+            new ScheduleJob(this).scheduleJobToTriggerNotification();
 
             //update shared preference
             SharedPreferences.Editor editor = preferences.edit();
