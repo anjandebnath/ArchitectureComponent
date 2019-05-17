@@ -24,7 +24,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.Executors;
 
 /**
@@ -78,6 +80,8 @@ public abstract class MoviesDatabase extends RoomDatabase {
         JSONArray movie = loadJsonArray(context);
 
         try {
+            List<MovieEntity> allMovies = new ArrayList<>();
+
             for (int i = 0; i < movie.length(); i++) {
 
                 JSONObject item = movie.getJSONObject(i);
@@ -86,12 +90,16 @@ public abstract class MoviesDatabase extends RoomDatabase {
                 DirectorEntity directorEntity = new DirectorEntity(fullName);
                 String movieName = item.getString("movieName");
                 MovieEntity movieEntity = new MovieEntity(movieName, (int) directorDao.insert(directorEntity));
-                Date d = DateTypeConverter.stringTimeToDate("02/04/1997");
-                movieEntity.setReleaseDate(d);
+
 
                 movieDao.insert(movieEntity);
 
+                allMovies.add(movieEntity);
+
             }
+
+            //movieDao.insertAll(allMovies.toArray(new MovieEntity[allMovies.size()]));
+
         } catch (JSONException exception) {
             exception.printStackTrace();
         }

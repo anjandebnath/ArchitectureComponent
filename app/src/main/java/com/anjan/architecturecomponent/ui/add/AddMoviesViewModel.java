@@ -28,7 +28,7 @@ public class AddMoviesViewModel extends AndroidViewModel {
     }
 
     public void insertMovie(MovieEntity... movies) {
-        movieDao.insert(movies);
+        movieDao.insertAll(movies);
     }
 
     public long insertDirector(DirectorEntity director){

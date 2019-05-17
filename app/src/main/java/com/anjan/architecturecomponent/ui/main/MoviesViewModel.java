@@ -51,7 +51,7 @@ public class MoviesViewModel extends AndroidViewModel {
      */
     private LiveData<List<MovieEntity>> getMoviesLiveData(){
 
-        moviesLiveData = movieDao.getAllMoviesByDate("02/04/1997");
+        moviesLiveData = movieDao.getAllMovies();
         return moviesLiveData;
 
     }
@@ -103,8 +103,8 @@ public class MoviesViewModel extends AndroidViewModel {
         return moviesMediatorLiveData;
     }
 
-    public void insert(MovieEntity... movies) {
-        movieDao.insert(movies);
+    public void insertAll(MovieEntity... movies) {
+        movieDao.insertAll(movies);
     }
 
     public void update(MovieEntity movie) {

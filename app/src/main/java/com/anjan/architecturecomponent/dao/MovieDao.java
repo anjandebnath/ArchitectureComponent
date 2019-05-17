@@ -22,10 +22,10 @@ public interface MovieDao {
     @Query("SELECT * FROM movie WHERE movieName = :title LIMIT 1")
     MovieEntity findMovieByTitle(String title);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(MovieEntity... movieEntity);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(MovieEntity... movieEntity);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(MovieEntity movieEntity);
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
