@@ -37,7 +37,7 @@ public class NotifyMeJobService extends JobService {
         // for Oreo or higher Notification channel will be created
         // otherwise simple notification will be shown
         createNotificationChannel();
-
+        sendNotification();
 
         return false;
     }
@@ -78,7 +78,7 @@ public class NotifyMeJobService extends JobService {
 
         }
 
-        sendNotification();
+
     }
 
 

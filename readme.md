@@ -46,7 +46,7 @@ This project covers the syllabus of `Associate Android Developer Certification`
 
 ### JobService
 
-**JobService** is an android service component with callback methods which the **JobSchedule** calls when a job needs to be run.
+**JobService** is an android service component with callback methods, which the **JobSchedule** calls when a job needs to be run.
 That means your **background job** code needs to be added to **callback methods of JobService**.
 
 ### Scheduling Job (Job Scheduler)
@@ -58,5 +58,7 @@ JobInfo.Builder has various setter methods which allow you to define your Job.
 
 ### How this example work?
 
-From Firebase real time database fetch data periodically and store into local database.
-[link1](http://www.zoftino.com/android-job-scheduler-example) and [Firebase](https://www.androidhive.info/2016/10/android-working-with-firebase-realtime-database/)
+1. Get your JobScheduler instance to schedule a job.
+2. Here your job is to trigger a notification.
+3. You can define your job by JobInfo.Builder.
+4. Create a JobService that will perform the job when job scheduler needs.
