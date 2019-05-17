@@ -59,6 +59,10 @@ public class MoviesViewModel extends AndroidViewModel {
     /**
      * MediatorLiveData
      * It will merge the LiveData object into Mediator Livedata
+     *
+     * It's maintain One -to -many relation
+     * a single mediator livedata can manage 2 seperate list
+     * and when any of them get updted it emmits data.
      */
     private void setupMediatorLiveData(){
 
