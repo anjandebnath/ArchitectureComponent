@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="number_list_key">
+        <item>Choose two option</item>
+        <item>Choose three option</item>
+        <item>Choose four option</item>
+    </string-array>
+    <string-array name="number_list_value">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+</resources>

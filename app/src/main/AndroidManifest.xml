@@ -22,6 +22,12 @@
             android:label="@string/title_activity_add">
 
         </activity>
+
+        <activity
+            android:name=".SettingActivity"
+            android:label="@string/title_activity_add">
+
+        </activity>
     </application>
 
 </manifest>

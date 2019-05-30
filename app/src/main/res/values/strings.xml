@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ArchitectureComponent</string>
     <string name="title_activity_add">AddActivity</string>
+    <string name="pref_list">List Preference</string>
+    <string name="pref_list_title">List Preference</string>
+    <string name="pref_list_summary">List preference summary</string>
 </resources>

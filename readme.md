@@ -78,4 +78,31 @@ Espresso is a testing framework for Android to make it easy to write reliable us
 
 ![View Assertion](https://github.com/anjandebnath/ArchitectureComponent/blob/ui_test/app/img/assertion.png)     
             
- [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)   and [example of seperate view component test](https://www.javatips.net/api/material-components-android-master/tests/javatests/android/support/design/widget/FloatingActionButtonTest.java)  
+ [Useful link](https://medium.com/mindorks/android-testing-part-1-espresso-basics-7219b86c862b)   and [example of seperate view component test](https://www.javatips.net/api/material-components-android-master/tests/javatests/android/support/design/widget/FloatingActionButtonTest.java) 
+ 
+ 
+ 
+ [Developer Training](https://github.com/google-developer-training/android-fundamentals-apps-v2) Follow the repositories that contain Espresso UI test 
+ 
+ ### Important Code for List preference UI test
+ 
+         @Test
+             public void clickListPreference() throws Exception{
+         
+                 // Check if it is displayed
+                 Context appContext = InstrumentationRegistry.getTargetContext();
+         
+                 onData(allOf(
+                         is(instanceOf(Preference.class)),
+                         withKey(appContext.getResources().getString(R.string.pref_list))))
+                         .check(matches(isDisplayed()));
+         
+                 //Perform click listener
+                 onData(allOf(
+                         is(instanceOf(Preference.class)),
+                         withKey(appContext.getResources().getString(R.string.pref_list))))
+                         .onChildView(withText(appContext.getResources().getString(R.string.pref_list_title)))
+                         .perform(click());
+         
+         
+             }
