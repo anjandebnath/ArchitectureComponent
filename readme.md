@@ -49,5 +49,12 @@ This project covers the syllabus of `Associate Android Developer Certification`
 - accessibility_hook (**Custom view and accessibility**)
 - nav_drawer (**Navigation Drawer**)
 - user_preference (**Setting preference and menu**)
+- ui_test (**Android Espresso UI test**)
+- constraintlayout (**Basic constraint layout feature**)
+- emoji (**Emoji icon**)
+- notifivation (**Android notification for new API**)
 
 
+- RnD_chathistory (**Customize paging example**)
+
+for unit test related code to get prepared for GAAD exam [MockitoUnitTest](https://github.com/anjandebnath/MockitoUnitTestTutorial)
